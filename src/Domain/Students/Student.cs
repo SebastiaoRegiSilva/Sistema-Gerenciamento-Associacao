@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using Disparo.Plataforma.Domain.Emails;
 using Disparo.Plataforma.Domain.PhoneNumbers;
+using System.Collections.Generic;
 
 namespace Disparo.Plataforma.Domain.Students
 {
@@ -15,8 +16,10 @@ namespace Disparo.Plataforma.Domain.Students
         /// <summary>Números para comunicação direta com o aluno.</summary>
         public IEnumerable<PhoneNumber> PhoneNumbers { get; set; }
 
+        /// <summary>Email institucional.</summary>
+        public InstitutionalEmail Email { get; set; }
         
-        /// <summary>Construtor com instanciação de um estudante para obter informações. </summary>
+        /// <summary>Construtor com instanciação de um estudante para obter informações.</summary>
         /// <param name="enroll">Matrícula.</param>
         /// <param name="name">Nome.</param>
         /// <param name="phoneNumbers">Números para comunicação direta com o aluno.</param>

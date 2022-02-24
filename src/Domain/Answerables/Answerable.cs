@@ -3,10 +3,7 @@ namespace Disparo.Plataforma.Domain.Answerables
     /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
     public class Answerable
     {
-        /// <summary>Código de identificação do responsável ou pai do aluno.</summary>
-        public int Id { get; set; }
-
-        /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
+       /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
         public string Cpf { get; set; }
 
         /// <summary>Nome dos pais ou responsáveis.</summary>
@@ -16,14 +13,12 @@ namespace Disparo.Plataforma.Domain.Answerables
         public string AdrressEmail { get; set; }
 
         
-        /// <summary>Construtor com parâmetros para instanciação de um responsãvel e suas informações.</summary>
-        /// <param name="id">Código de identificação de um responsável ou pain do aluno.</param>
+        /// <summary>Construtor com parâmetros para instanciação de um responsável e suas informações.</summary>
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="name">Nome dos pais ou responsáveis.</param>
         /// <param name="adrressEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
-        public Answerable(int id, string cpf, string name, string adrressEmail)
+        public Answerable(string cpf, string name, string adrressEmail)
         {
-            Id = id;
             Cpf = cpf;
             Name = name;
             AdrressEmail = adrressEmail;
