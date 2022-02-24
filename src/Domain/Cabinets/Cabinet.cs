@@ -9,7 +9,7 @@ namespace Disparo.Plataforma.Domain.Cabinet
         public int NumberIdentificator { get; set; }
 
         /// <summary>Prédio onde está localizado.</summary>
-        //public Building Building { get; set; }
+        public Building Building { get; set; }
 
         /// <summary>Estudante responsável pelo armário.</summary>
         public Student Student { get; set; }

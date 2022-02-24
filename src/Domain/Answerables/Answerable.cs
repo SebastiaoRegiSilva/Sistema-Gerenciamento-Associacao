@@ -1,6 +1,6 @@
 namespace Disparo.Plataforma.Domain.Answerables
 {
-    /// <summary>Entidade que representa os pais ou responsáveis pelos alunos.</summary>
+    /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
     public class Answerable
     {
         /// <summary>Código de identificação do responsável ou pai do aluno.</summary>
