@@ -10,15 +10,14 @@ namespace Disparo.Plataforma.Domain.Emails
     
         /// <summary>Nome do proprietário da conta.</summary>
         public Answerable Answerable { get; set; }
-    
-        // /// <summary>Validar se o email tem o formato correto.</summary>
-        // static void ValidarEmail(string address)
-        // {
-        //     if(string.IsNullOrEmpty(address))
-        //         return;
 
-        //     if(!_emailRegex.IsMatch(address))
-        //         throw new AddressEmailInvalidException(address);
-        // }
+        /// <summary>Contrutor com parâmetros para instanciação do objeto.</summary>
+        /// <param name="address">Endereço de e-mail.</param>
+        /// <param name="answerable">Nome do proprietário da conta.</param>
+        public EmailReceiver(string address, Answerable answerable)
+        {
+            Address = address;
+            Answerable = answerable;
+        }
     }
 }
