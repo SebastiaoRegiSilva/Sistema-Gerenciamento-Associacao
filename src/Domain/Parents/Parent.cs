@@ -1,7 +1,7 @@
-namespace Disparo.Plataforma.Domain.Answerables
+namespace Disparo.Plataforma.Domain.Parents
 {
     /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
-    public class Answerable
+    public class Parent
     {
        /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
         public string Cpf { get; set; }
@@ -17,7 +17,7 @@ namespace Disparo.Plataforma.Domain.Answerables
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="name">Nome dos pais ou responsáveis.</param>
         /// <param name="adrressEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
-        public Answerable(string cpf, string name, string adrressEmail)
+        public Parent(string cpf, string name, string adrressEmail)
         {
             Cpf = cpf;
             Name = name;
