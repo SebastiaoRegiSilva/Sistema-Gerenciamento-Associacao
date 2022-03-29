@@ -1,7 +1,7 @@
-namespace Disparo.Plataforma.Domain.PhoneNumbers
+namespace Disparo.Plataforma.Domain.NumerosTelefones
 {
     /// <summary>Possíveis tipo de telefone.<summary>
-    enum TypePhoneNumber
+    enum TipoNumeroTelefone
     {
         /// <summary>Uso particular.</summary>
         Particular = 0,

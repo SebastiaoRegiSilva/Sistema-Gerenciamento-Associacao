@@ -1,18 +1,18 @@
-using Disparo.Plataforma.Domain.Students;
+using Disparo.Plataforma.Domain.Alunos;
 
 namespace Disparo.Plataforma.Domain.Emails
 {
     /// <summary>Entidade que representa o aluno que está sendo receptor de um e-mail.</summary>
-    public class EmailReceiverStudent
+    public class AlunoRecebeEmail
     {
         /// <summary>Nome do proprietário da conta.</summary>
-        public Student Student { get; set; }
+        public Aluno aluno { get; set; }
 
         /// <summary>Contrutor com parâmetros para instanciação do objeto.</summary>
-        /// <param name="student">Nome do proprietário da conta.</param>
-        public EmailReceiverStudent(Student student)
+        /// <param name="aluno">Nome do proprietário da conta.</param>
+        public AlunoRecebeEmail(Aluno aluno)
         {
-            Student = student;
+            Aluno = aluno;
         }
     }
 }
