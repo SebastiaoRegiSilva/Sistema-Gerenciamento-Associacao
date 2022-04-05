@@ -6,7 +6,7 @@ namespace Disparo.Plataforma.Domain.Emails
     public class AlunoRecebeEmail
     {
         /// <summary>Nome do proprietário da conta.</summary>
-        public Aluno aluno { get; set; }
+        public Aluno Aluno { get; set; }
 
         /// <summary>Contrutor com parâmetros para instanciação do objeto.</summary>
         /// <param name="aluno">Nome do proprietário da conta.</param>

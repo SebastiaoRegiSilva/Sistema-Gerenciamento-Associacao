@@ -1,8 +1,8 @@
 using Disparo.Plataforma.Domain.NumerosTelefones;
 using System.Collections.Generic;
 
-namespace Disparo.Plataforma.Domain.Aluno
-{
+namespace Disparo.Plataforma.Domain.Alunos
+{    
     /// <summary>Entidade que representa os estudantes.</summary>
     public class Aluno
     {

@@ -23,12 +23,12 @@ namespace Disparo.Plataforma.Domain.Armario
         /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="aluno">Estudante responsável pelo armário.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
-        public Armario(int numeroIdentificador, Predio predio, Aluno aluno, int AnoValidade)
+        public Armario(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
         {
             NumeroIdentificador = numeroIdentificador;
             Predio = predio;
             Aluno = aluno;
-            AnoValidade = yearValidator;
+            AnoValidade = anoValidade;
         }
     }
 }
