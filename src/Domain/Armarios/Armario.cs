@@ -3,11 +3,11 @@ using Domain.Plataforma.Domain.Predios;
 
 namespace Disparo.Plataforma.Domain.Armario
 {
-    /// <summary>Objeto de valor que representa um armário para guarda de objetos pessoais do aluno </summary>
+    /// <summary>Objeto de valor que representa um armário para guarda de objetos pessoais do aluno.</summary>
     public class Armario
     {
         /// <summary>Número identificador do armário.</summary>
-       public int NumeroIdentificador { get; set; }
+        public int NumeroIdentificador { get; set; }
 
         /// <summary>Prédio onde está localizado.</summary>
         public Predio Predio { get; set; }

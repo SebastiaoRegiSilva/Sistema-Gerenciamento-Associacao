@@ -3,7 +3,7 @@ namespace Disparo.Plataforma.Domain.Responsaveis
     /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
     public class Responsavel
     {
-       /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
+        /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
         public string Cpf { get; set; }
 
         /// <summary>Nome dos pais ou responsáveis.</summary>

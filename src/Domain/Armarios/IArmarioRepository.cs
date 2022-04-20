@@ -1,4 +1,4 @@
-namespace Domain.Armarios
+namespace Disparo.Plataforma.Domain.Armario
 {
     public interface IArmarioRepository
     {
