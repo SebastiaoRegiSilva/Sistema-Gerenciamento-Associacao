@@ -1,7 +1,7 @@
 using Disparo.Plataforma.Domain.Alunos;
 using Domain.Plataforma.Domain.Predios;
 
-namespace Disparo.Plataforma.Domain.Armario
+namespace Disparo.Plataforma.Domain.Armarios
 {
     /// <summary>Objeto de valor que representa um armário para guarda de objetos pessoais do aluno.</summary>
     public class Armario

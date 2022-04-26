@@ -9,7 +9,6 @@ namespace Disparo.Plataforma.Domain.NumerosTelefones
         /// <summary>Número do telefone.<summary>
         public int Numero { get; set; }
     
-        
         /// Construtor com parâmetros para instanciação de um número de telefone.
         /// </summary>
         /// <param name="ddd">Discagem Direta á Distância.</param>
