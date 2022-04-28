@@ -9,8 +9,9 @@ namespace Disparo.Plataforma.Domain.Responsaveis
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="nome">Nome dos pais ou responsáveis.</param>
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
+        /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <returns>Código de identificação gerado para um responsável cadastrado.</returns>
-        Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail);
+        Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, string numerosTelefones);
         
         /// <summary>Recuperar no repositório um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>

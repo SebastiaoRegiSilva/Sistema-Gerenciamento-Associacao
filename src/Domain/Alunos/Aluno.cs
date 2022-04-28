@@ -18,7 +18,7 @@ namespace Disparo.Plataforma.Domain.Alunos
         public DateTime DataNascimento { get; set; }
 
         /// <summary>Números para comunicação direta com o aluno.</summary>
-        public IEnumerable<NumeroTelefone> NumerosTelefones { get; set; }
+        public IEnumerable<string> NumerosTelefones { get; set; }
 
         /// <summary>Endereço de e-mail institucional.</summary>
         public string EnderecoEmail { get; set; }
@@ -33,7 +33,7 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        public Aluno(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<NumeroTelefone> numerosTelefones, Classe classe)
+        public Aluno(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
         {
             Matricula = matricula;
             Nome = nome;

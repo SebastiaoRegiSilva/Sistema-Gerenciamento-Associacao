@@ -14,18 +14,23 @@ namespace Disparo.Plataforma.Domain.Responsaveis
 
         /// <summary>Endereço de e-mail dos pais ou responsáveis.</summary>
         public string EnderecoEmail { get; set; }
+
+        /// <summary>Números para comunicação direta com o aluno.</summary>
+        public IEnumerable<string> NumerosTelefones { get; set; }
         
         /// <summary>Construtor com parâmetros para instanciação de um responsável e suas informações.</summary>
         /// <param name="id">Código de identificação de um responsável.</param>
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="nome">Nome dos pais ou responsáveis.</param>
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
-        public Responsavel(string id, string cpf, string nome, string enderecoEmail)
+        /// <param name="numerosTelefones">Endereço de e-mail cdos pais ou responsáveis.</param>
+        public Responsavel(string id, string cpf, string nome, string enderecoEmail, string numerosTelefones)
         {
             Id = id;
             Cpf = cpf;
             Nome = nome;
             EnderecoEmail = enderecoEmail;
+            NumerosTelefones = numerosTelefones;
         }
     }
 }
