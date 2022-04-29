@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Repositories\Repositories.csproj" />
+    <ProjectReference Include="..\Infrastructure\Repositories\MongoDb\MongoDbRepository.csproj" />
   </ItemGroup>
 
 </Project>
