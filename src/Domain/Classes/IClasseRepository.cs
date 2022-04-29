@@ -15,7 +15,7 @@ namespace Disparo.Plataforma.Domain.Classes
         
         /// <summary>Recuperar no repositório uma classe com base no seu código de identificação.</summary>
         /// <param name="habilitacao">Nome do curso em que o aluno está matriculado.</param>
-        /// <returns>Classe recuperado.</returns>
+        /// <returns>Classe recuperada.</returns>
         Task<Classe> RecuperarClassePorHabilitacaoAsync(string habilitacao);
         
         /// <summary>Edita na base de dados uma classe com base no nome da matéria.</summary>
