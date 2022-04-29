@@ -15,18 +15,25 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        Task<string>CadastrarAluno(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
+        Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
         
         /// <summary>Edita na base de dados aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        Task<Aluno>EditarAluno(string matricula);
+        Task<Aluno>EditarAlunoAsync(string matricula);
         
         /// <summary>Recupera na base de dados aluno cadastrado com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        Task<Aluno>RecuperarAlunoMatricula(string matricula);
+        Task<Aluno>RecuperarAlunoMatriculaAsync(string matricula);
 
         /// <summary>Recupera na base de dados aluno cadastrado com base no nome.</summary>
         /// <param name="nome">Nome do aluno.</param>
-        Task<Aluno>RecuperarAlunoNome(string nome);
+        Task<Aluno>RecuperarAlunoNomeAsync(string nome);
+
+        // <summary>Exclui na base de dados um aluno cadastrado no sistema com base na matrícula.</summary>
+        /// <param name="matricula">Matrícula do aluno.</param>
+        Task ExcluirAlunoAsync(string matricula);
+
+        // <summary>Exclui na base de dados todos alunos cadastrados.</summary>
+        Task ExcluirTodosAlunoAsync();
     }
 }
