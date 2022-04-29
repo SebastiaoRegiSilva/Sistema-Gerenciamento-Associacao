@@ -1,3 +1,4 @@
+using MongoDB.Bson.Serialization;
 using Repositories.MongoDb.Alunos.Models;
 using Repositories.MongoDb.Armarios.Models;
 using Repositories.MongoDb.Classes.Models;
@@ -7,6 +8,11 @@ using Repositories.MongoDb.Responsaveis.Models;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb
 {
+    /*
+        Comentário acerca do BsonMap no Mongo: 
+        Representa um mapeamento entre uma classe e um documento BSON.
+    */
+    
     /// <summary>Classe de configuração responsável pelo mapeamento geral dos modelos na base de dados.</summary>
     public static class BsonMapConfig
     {
@@ -19,9 +25,13 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb
             if (_hit)
                 return;
 
+            // Cria e registra um mapade classe.
             BsonClassMap.RegisterClassMap<AlunoModel>(map =>
             {
+                // Automapeia a classe.
                 map.AutoMap();
+                
+                // Define se os elementos extras devem ser ignorados ao desserializar.
                 map.SetIgnoreExtraElements(true);
             });
 
