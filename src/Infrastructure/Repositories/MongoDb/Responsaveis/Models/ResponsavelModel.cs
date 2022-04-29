@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Responsaveis.Models
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Models
 {
     public class ResponsavelModel
     {

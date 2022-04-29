@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Responsaveis
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
 {
     public class ResponsavelContext
     {

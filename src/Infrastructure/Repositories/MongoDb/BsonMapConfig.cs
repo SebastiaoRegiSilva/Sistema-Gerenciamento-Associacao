@@ -4,7 +4,7 @@ using Repositories.MongoDb.Armarios.Models;
 using Repositories.MongoDb.Classes.Models;
 using Repositories.MongoDb.Emails.Models;
 using Repositories.MongoDb.Predios.Models;
-using Repositories.MongoDb.Responsaveis.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Models;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb
 {
