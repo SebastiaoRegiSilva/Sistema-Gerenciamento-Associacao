@@ -7,7 +7,7 @@ namespace Disparo.Plataforma.Domain.Armarios
     public class Armario
     {
         /// <summary>Número identificador do armário.</summary>
-        public int NumeroIdentificador { get; set; }
+        public string NumeroIdentificador { get; set; }
 
         /// <summary>Prédio onde está localizado.</summary>
         public Predio Predio { get; set; }
@@ -23,7 +23,7 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="aluno">Estudante responsável pelo armário.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
-        public Armario(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
+        public Armario(string numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
         {
             NumeroIdentificador = numeroIdentificador;
             Predio = predio;
