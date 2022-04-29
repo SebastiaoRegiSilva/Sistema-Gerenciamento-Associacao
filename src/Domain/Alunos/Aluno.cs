@@ -1,5 +1,4 @@
 using Disparo.Plataforma.Domain.Classes;
-using Disparo.Plataforma.Domain.NumerosTelefones;
 using System;
 using System.Collections.Generic;
 

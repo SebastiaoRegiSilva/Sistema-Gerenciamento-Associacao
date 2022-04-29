@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Responsaveis
@@ -11,7 +12,7 @@ namespace Disparo.Plataforma.Domain.Responsaveis
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <returns>Código de identificação gerado para um responsável cadastrado.</returns>
-        Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, string numerosTelefones);
+        Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones);
         
         /// <summary>Recuperar no repositório um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>

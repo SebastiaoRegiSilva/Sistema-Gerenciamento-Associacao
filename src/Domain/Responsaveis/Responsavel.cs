@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Disparo.Plataforma.Domain.Responsaveis
 {
     /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
@@ -24,7 +26,7 @@ namespace Disparo.Plataforma.Domain.Responsaveis
         /// <param name="nome">Nome dos pais ou responsáveis.</param>
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
         /// <param name="numerosTelefones">Endereço de e-mail cdos pais ou responsáveis.</param>
-        public Responsavel(string id, string cpf, string nome, string enderecoEmail, string numerosTelefones)
+        public Responsavel(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
         {
             Id = id;
             Cpf = cpf;
