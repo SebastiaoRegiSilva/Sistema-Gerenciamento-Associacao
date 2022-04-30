@@ -6,7 +6,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
     /// <summary>Contexto utilizado para acesso aos dados dos responsáveis.</summary>
     class ResponsavelContext
     {
-         /// <summary>Base de dados MongoDB onde estão armazenados os responsáveis.</summary>
+        /// <summary>Base de dados MongoDB onde estão armazenados os responsáveis.</summary>
         private readonly IMongoDatabase _database = null;
 
         /// <summary>Construtor com parâmetros para inicialização.</summary>
@@ -21,7 +21,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
             BsonMapConfig.Config();
         }
 
-        /// <summary>Coleção de responsaveis.</summary>
+        /// <summary>Coleção de responsáveis.</summary>
         public IMongoCollection<ResponsavelModel> Responsaveis
         {
             get
