@@ -1,7 +1,6 @@
 using Disparo.Plataforma.Domain.Responsaveis;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Models;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
