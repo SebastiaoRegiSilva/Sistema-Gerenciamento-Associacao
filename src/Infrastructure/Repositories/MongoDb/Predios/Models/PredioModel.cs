@@ -7,7 +7,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models
     /// <summary>Modelo que representa um prédio na base de dados.</summary>
     public class PredioModel
     {
-        /// <summary>Código de identificação de um responsável.</summary>
+        /// <summary>Código de identificação de um prédio.</summary>
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set;}
