@@ -36,9 +36,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
                 NumerosTelefones = numerosTelefones
             };
 
-            // Forçar o método a ser concluído de forma assíncrona. 
-            //await Task.Yield();
-
             await _ctxResponsavel.Responsaveis.InsertOneAsync(model);
 
             return model.Id;

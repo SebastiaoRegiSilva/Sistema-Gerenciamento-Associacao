@@ -9,17 +9,17 @@ namespace Domain.Plataforma.Domain.Predios
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         Task<string> CadastrarPredioAsync(int numeroIdentificador);
         
-        /// <summary>Recuperar no repositório um prédio com base no número identificador.</summary>
+        /// <summary>Recupera no repositório um prédio com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         /// <returns>Prédio recuperado.</returns>
-        Task<Predio> RecuperarPredioPorNumeroAsync(string numeroIdentificador);
+        Task<Predio> RecuperarPredioPorNumeroAsync(int numeroIdentificador);
         
         /// <summary>Edita no repositório um prédio com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
-        Task EditarPredioAsync(string numeroIdentificador);
+        Task EditarPredioAsync(int numeroIdentificador);
         
         /// <summary>Exclui no repositório um prédio cadastrado no sistema com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
-        Task ExcluirPredioAsync(string numeroIdentificador);
+        Task ExcluirPredioAsync(int numeroIdentificador);
     }
 }

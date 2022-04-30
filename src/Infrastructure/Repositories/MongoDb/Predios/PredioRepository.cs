@@ -1,5 +1,7 @@
-using System.Threading.Tasks;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models;
 using Domain.Plataforma.Domain.Predios;
+using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
 {
@@ -16,24 +18,56 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
             _ctxPredio = new PredioContext(conString, database);
         }
 
-        public async Task<string> CadastrarPredioAsync(string id, int numeroIdentificador)
+        // <summary>Cadastra na base de dados um novo prédio no sistema.</summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        public async Task<string> CadastrarPredioAsync(int numeroIdentificador)
         {
-            
+            var model = new PredioModel
+            {
+                NumeroIdentificador = numeroIdentificador
+            };
+
+            await _ctxPredio.Predios.InsertOneAsync(model);
+
+            return model.Id;
         }
 
-        public async Task EditarClasseAsync(string numeroIdentificador)
+        /// <summary>Edita na base de dados um prédio com base no número identificador.</summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        public async Task EditarPredioAsync(int numeroIdentificador)
         {
+            var predioRecuperado = RecuperarPredioPorNumeroAsync(numeroIdentificador);
             
+            var builder = Builders<PredioModel>.Filter;
+            var filter = builder.Eq(p => p.NumeroIdentificador, numeroIdentificador);
+
+            var update = Builders<PredioModel>.Update
+                .Set(p => p.NumeroIdentificador, predioRecuperado.Result.NumeroIdentificador);
+
+            await _ctxPredio.Predios.UpdateOneAsync(filter, update);
         }
 
-        public async Task ExcluirPredioAsync(string numeroIdentificador)
+         /// <summary>Exclui na base de dados um prédio cadastrado no sistema com base no número identificador.</summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        public async Task ExcluirPredioAsync(int numeroIdentificador)
         {
-            
+            var filter = Builders<PredioModel>.Filter.Eq(p => p.NumeroIdentificador, numeroIdentificador);
+
+            await _ctxPredio.Predios.DeleteOneAsync(filter);
         }
 
-        public async Task<Predio> RecuperarPredioPorNumeroAsync(string numeroIdentificador)
+        /// <summary>Recupera na base de dados um prédio com base no número identificador.</summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        /// <returns>Prédio recuperado.</returns>
+        public async Task<Predio> RecuperarPredioPorNumeroAsync(int numeroIdentificador)
         {
+            var builder = Builders<PredioModel>.Filter;
+            var filter = builder.Eq(p => p.NumeroIdentificador, numeroIdentificador);
             
+            return await _ctxPredio.Predios
+                .Aggregate()
+                .Match(filter)
+                .FirstOrDefaultAsync();
         }
     }
 }
