@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Emails.Models
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails.Models
 {
     public class EmailModel
     {

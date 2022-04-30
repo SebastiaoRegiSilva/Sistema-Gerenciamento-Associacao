@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Predios.Models
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models
 {
     public class PredioModel
     {

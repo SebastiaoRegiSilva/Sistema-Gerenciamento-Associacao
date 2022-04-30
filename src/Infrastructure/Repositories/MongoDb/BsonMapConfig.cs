@@ -1,10 +1,11 @@
-using MongoDB.Bson.Serialization;
-using Repositories.MongoDb.Alunos.Models;
-using Repositories.MongoDb.Armarios.Models;
-using Repositories.MongoDb.Classes.Models;
-using Repositories.MongoDb.Emails.Models;
-using Repositories.MongoDb.Predios.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails.Models;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Models;
+using MongoDB.Bson.Serialization;
+
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb
 {

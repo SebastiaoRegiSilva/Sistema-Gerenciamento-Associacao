@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Alunos
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
 {
     public class AlunoRepository
     {

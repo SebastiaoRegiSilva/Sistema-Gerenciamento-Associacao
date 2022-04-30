@@ -1,4 +1,4 @@
-namespace Repositories.MongoDb.Armarios.Models
+namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models
 {
     public class ArmarioModel
     {
