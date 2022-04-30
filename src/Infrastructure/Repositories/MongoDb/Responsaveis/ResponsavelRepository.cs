@@ -8,24 +8,15 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
     /// <summary>Implementação do repositório de responsáveis para o Mongo DB.</summary>
     public class ResponsavelRepository : IResponsavelRepository
     {
-        Task<string> IResponsavelRepository.CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>Contexto utilizado pelo repositório de responsáveis para acessar a coleção de um responsável na base de dados.</summary> 
+        private readonly ResponsavelContext _ctxResponsavel = null;
 
-        Task IResponsavelRepository.EditarClasseAsync(string cpf)
+        /// <summary>Construtor com parâmetros para inicialização.</summary>
+        /// <param name="conString">String para conexão com a base de dados.</param>
+        /// <param name="database">Nome da base de dados onde se encontra o repositório.</param>
+        public ResponsavelRepository(string conString, string database)
         {
-            throw new NotImplementedException();
-        }
-
-        Task IResponsavelRepository.ExcluirResponsavelAsync(string cpf)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Responsavel> IResponsavelRepository.RecuperarResponsavelPorCPFAsync(string cpf)
-        {
-            throw new NotImplementedException();
+            _ctxResponsavel = new ResponsavelContext(conString, database);
         }
     }
 }
