@@ -6,9 +6,8 @@ namespace Domain.Plataforma.Domain.Predios
     public interface IPredioRepository
     {
         /// <summary>Cadastra no repositório um novo prédio no sistema.</summary>
-        /// <param name="id">Código de identificação do prédio.</param>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
-        Task<string> CadastrarPredioAsync(string id, int numeroIdentificador);
+        Task<string> CadastrarPredioAsync(int numeroIdentificador);
         
         /// <summary>Recuperar no repositório um prédio com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>

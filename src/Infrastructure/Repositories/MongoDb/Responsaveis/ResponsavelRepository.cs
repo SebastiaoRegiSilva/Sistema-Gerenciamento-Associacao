@@ -21,17 +21,15 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
         }
 
         /// <summary>Cadastra no base de dados um novo responsável no sistema.</summary>
-        /// <param name= "id">Código de identificação do responsável.</param>
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="nome">Nome dos pais ou responsáveis.</param>
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <returns>Código de identificação gerado para um responsável cadastrado.</returns>
-        public async Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
+        public async Task<string> CadastrarResponsavelAsync(string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
         {
             var model = new ResponsavelModel
             {
-                Id = id,
                 Cpf = cpf,
                 Nome = nome,
                 EnderecoEmail = enderecoEmail,

@@ -7,13 +7,12 @@ namespace Disparo.Plataforma.Domain.Responsaveis
     public interface IResponsavelRepository
     {
         /// <summary>Cadastra no repositório um novo responsável no sistema.</summary>
-        /// <param name= "id">Código de identificação do responsável.</param>
         /// <param name="cpf">Cadastro de pessoa físíca do responsável do aluno.</param>
         /// <param name="nome">Nome dos pais ou responsáveis.</param>
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <returns>Código de identificação gerado para um responsável cadastrado.</returns>
-        Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones);
+        Task<string> CadastrarResponsavelAsync(string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones);
         
         /// <summary>Recuperar no repositório um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
