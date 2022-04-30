@@ -1,6 +1,7 @@
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes
 {
-    public class ClasseContext
+    /// <summary>Contexto utilizado para acesso aos dados das classes.</summary>
+    class ClasseContext
     {
         
     }

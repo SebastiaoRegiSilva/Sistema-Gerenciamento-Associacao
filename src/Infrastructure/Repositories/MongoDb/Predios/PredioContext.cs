@@ -1,6 +1,7 @@
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
 {
-    public class PredioContext
+    /// <summary>Contexto utilizado para acesso aos dados dos prédios.</summary>
+    class PredioContext
     {
         
     }

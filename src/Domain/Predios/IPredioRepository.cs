@@ -17,7 +17,7 @@ namespace Domain.Plataforma.Domain.Predios
         
         /// <summary>Edita no repositório um prédio com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
-        Task EditarClasseAsync(string numeroIdentificador);
+        Task EditarPredioAsync(string numeroIdentificador);
         
         /// <summary>Exclui no repositório um prédio cadastrado no sistema com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>

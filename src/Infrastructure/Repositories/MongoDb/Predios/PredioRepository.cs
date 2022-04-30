@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Domain.Plataforma.Domain.Predios;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
@@ -13,6 +14,26 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
         public PredioRepository(string conString, string database)
         {
             _ctxPredio = new PredioContext(conString, database);
+        }
+
+        public async Task<string> CadastrarPredioAsync(string id, int numeroIdentificador)
+        {
+            
+        }
+
+        public async Task EditarClasseAsync(string numeroIdentificador)
+        {
+            
+        }
+
+        public async Task ExcluirPredioAsync(string numeroIdentificador)
+        {
+            
+        }
+
+        public async Task<Predio> RecuperarPredioPorNumeroAsync(string numeroIdentificador)
+        {
+            
         }
     }
 }

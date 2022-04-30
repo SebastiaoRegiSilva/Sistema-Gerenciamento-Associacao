@@ -1,6 +1,7 @@
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
 {
-    public class ArmarioContext
+    /// <summary>Contexto utilizado para acesso aos dados dos armários.</summary>
+    class ArmarioContext
     {
         
     }
