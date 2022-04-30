@@ -1,4 +1,6 @@
 using Disparo.Plataforma.Domain.Responsaveis;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Models;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,30 +28,63 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis
         /// <param name="enderecoEmail">Endereço de e-mail cdos pais ou responsáveis.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <returns>Código de identificação gerado para um responsável cadastrado.</returns>
-        public async Task<string> IResponsavelRepository.CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
+        public async Task<string> CadastrarResponsavelAsync(string id, string cpf, string nome, string enderecoEmail, IEnumerable<string> numerosTelefones)
         {
-            throw new NotImplementedException();
+            var model = new ResponsavelModel
+            {
+                Id = id,
+                Cpf = cpf,
+                Nome = nome,
+                EnderecoEmail = enderecoEmail,
+                NumerosTelefones = numerosTelefones
+            };
+
+            // Forçar o método a ser concluído de forma assíncrona. 
+            //await Task.Yield();
+
+            await _ctxResponsavel.Responsaveis.InsertOneAsync(model);
+
+            return model.Id;
         }
 
         /// <summary>Edita na base de dados um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
-        public async Task IResponsavelRepository.EditarClasseAsync(string cpf)
+        public async Task EditarResponsavelAsync(string cpf)
         {
-            throw new NotImplementedException();
+            var responsavelRecuperado = RecuperarResponsavelPorCPFAsync(cpf);
+            
+            var builder = Builders<ResponsavelModel>.Filter;
+            var filter = builder.Eq(r => r.Cpf, cpf);
+
+            var update = Builders<ResponsavelModel>.Update
+                .Set(r => r.Cpf, responsavelRecuperado.Result.Cpf)
+                .Set(r => r.Nome, responsavelRecuperado.Result.Nome)
+                .Set(r => r.EnderecoEmail, responsavelRecuperado.Result.EnderecoEmail)
+                .Set(r => r.NumerosTelefones, responsavelRecuperado.Result.NumerosTelefones);
+
+            await _ctxResponsavel.Responsaveis.UpdateOneAsync(filter, update);
         }
 
         /// <summary>Exclui na base de dados um responsável cadastrado no sistema com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
-        public async Task IResponsavelRepository.ExcluirResponsavelAsync(string cpf)
+        public async Task ExcluirResponsavelAsync(string cpf)
         {
-            throw new NotImplementedException();
+            var filter = Builders<ResponsavelModel>.Filter.Eq(r => r.Cpf, cpf);
+
+            await _ctxResponsavel.Responsaveis.DeleteOneAsync(filter);
         }
 
         /// <summary>Recuperar na base de dados um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
-        public async Task<Responsavel> IResponsavelRepository.RecuperarResponsavelPorCPFAsync(string cpf)
+        public async Task<Responsavel> RecuperarResponsavelPorCPFAsync(string cpf)
         {
-            throw new NotImplementedException();
+            var builder = Builders<ResponsavelModel>.Filter;
+            var filter = builder.Eq(r => r.Cpf, cpf);
+            
+            return await _ctxResponsavel.Responsaveis
+                .Aggregate()
+                .Match(filter)
+                .FirstOrDefaultAsync();
         }
     }
 }

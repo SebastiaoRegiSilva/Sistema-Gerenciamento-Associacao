@@ -22,7 +22,7 @@ namespace Disparo.Plataforma.Domain.Responsaveis
         
         /// <summary>Edita no repositório um responsável com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
-        Task EditarClasseAsync(string cpf);
+        Task EditarResponsavelAsync(string cpf);
         
         /// <summary>Exclui no repositório um responsável cadastrado no sistema com base no CPF.</summary>
         /// <param name="cpf">Cadastro de pessoa física do responsável do aluno.</param>
