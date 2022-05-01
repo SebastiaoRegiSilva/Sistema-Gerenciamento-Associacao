@@ -35,6 +35,6 @@ namespace Disparo.Plataforma.Domain.Alunos
         Task ExcluirAlunoAsync(string matricula);
 
         // <summary>Exclui no repositório todos alunos cadastrados.</summary>
-        //Task ExcluirTodosAlunoAsync();
+        Task ExcluirTodosAlunoAsync();
     }
 }

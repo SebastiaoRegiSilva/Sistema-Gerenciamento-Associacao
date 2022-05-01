@@ -101,14 +101,12 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
         }
 
         /// <summary>Exclui na base de dados todos alunos cadastrados.</summary>
-        /// <param name="matricula">Corrigir essa função.</param>
-        public async Task ExcluirTodosAlunoAsync(string matricula)
+        public async Task ExcluirTodosAlunoAsync()
         {
-            // Recuperar todos para excluir.
-            
-            var filter = Builders<AlunoModel>.Filter.Eq(a => a.Matricula, matricula);
+            var builder = Builders<AlunoModel>.Filter;
+            var filter = builder.Where(a => a.Nome != string.Empty);
 
-            await _ctxAluno.Alunos.DeleteOneAsync(filter);
+            await _ctxAluno.Alunos.DeleteManyAsync(filter);
         }
     }
 }
