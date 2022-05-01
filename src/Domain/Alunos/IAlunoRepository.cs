@@ -19,7 +19,7 @@ namespace Disparo.Plataforma.Domain.Alunos
         
         /// <summary>Edita no repositório um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        Task<Aluno>EditarAlunoAsync(string matricula);
+        Task EditarAlunoAsync(string matricula);
         
         /// <summary>Recupera no repositório um aluno cadastrado com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
@@ -34,6 +34,6 @@ namespace Disparo.Plataforma.Domain.Alunos
         Task ExcluirAlunoAsync(string matricula);
 
         // <summary>Exclui no repositório todos alunos cadastrados.</summary>
-        Task ExcluirTodosAlunoAsync();
+        //Task ExcluirTodosAlunoAsync();
     }
 }

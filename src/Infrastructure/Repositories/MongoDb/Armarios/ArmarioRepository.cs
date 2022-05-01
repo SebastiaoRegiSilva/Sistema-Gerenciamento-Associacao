@@ -25,6 +25,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="aluno">Estudante responsável pelo armário.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        /// <returns>O código de identificação do armário cadastradado.</returns>
         public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
         {
             // Prédio e Aluno chamar o serviço.
