@@ -1,3 +1,15 @@
+using Disparo.Plataforma.Domain.Alunos;
+using Disparo.Plataforma.Domain.Armarios;
+using Disparo.Plataforma.Domain.Classes;
+using Disparo.Plataforma.Domain.Emails;
+using Disparo.Plataforma.Domain.Responsaveis;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis;
+using Domain.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +31,33 @@ namespace Disparo.Plataforma.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string mongoConString = Configuration.GetValue<string>("DB:Mongo:ConString");
+            string mongoDatabase = Configuration.GetValue<string>("DB:Mongo:Database");
+
+            var alunoRep = new AlunoRepository(mongoConString, mongoDatabase);
+            var alunoService = new AlunoService(alunoRep);
+            services.AddSingleton<AlunoService>(alunoService);
+
+            var armarioRep = new ArmarioRepository(mongoConString, mongoDatabase);
+            var armarioService = new ArmarioService(armarioRep);
+            services.AddSingleton<ArmarioService>(armarioService);
+
+            var classeRep = new ClasseRepository(mongoConString, mongoDatabase);
+            var classeService = new ClasseService(classeRep);
+            services.AddSingleton<ClasseService>(classeService);
+
+            var emailRep = new EmailRepository(mongoConString, mongoDatabase);
+            var emailService = new EmailService(emailRep);
+            services.AddSingleton<EmailService>(emailService);
+
+            var predioRep = new PredioRepository(mongoConString, mongoDatabase);
+            var predioService = new PredioService(predioRep);
+            services.AddSingleton<PredioService>(predioService);
+
+            var responsavelRep = new ResponsavelRepository(mongoConString, mongoDatabase);
+            var responsavelService = new ResponsavelService(responsavelRep);
+            services.AddSingleton<ResponsavelService>(responsavelService);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

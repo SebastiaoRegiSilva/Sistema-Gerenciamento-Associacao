@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Disparo.Plataforma.Api.Controllers
 {
     /// <summary>Controller que provê endpoints relacionados a entidade prédio.</summary>
