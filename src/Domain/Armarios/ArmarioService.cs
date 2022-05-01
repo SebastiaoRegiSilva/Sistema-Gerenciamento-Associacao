@@ -1,6 +1,6 @@
 namespace Disparo.Plataforma.Domain.Armarios
 {
-    /// <summary>Serviço responsável pelas operações relacionadas aos armários.</summary>
+    /// <summary>Serviço que provê acesso aos dados dos armários.</summary>
     public class ArmarioService
     {
         

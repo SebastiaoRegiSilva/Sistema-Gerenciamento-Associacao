@@ -1,6 +1,6 @@
 namespace Disparo.Plataforma.Domain.Classes
 {
-    /// <summary>Serviço responsável pelas operações relacionadas as classes.</summary>
+    /// <summary>Serviço que provê acesso aos dados das classes.</summary>
     public class ClasseService
     {
         

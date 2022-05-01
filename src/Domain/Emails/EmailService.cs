@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Emails
 {
-    /// <summary>Serviço responsável por operações com emails.</summary>
+    /// <summary>Serviço que provê acesso aos dados dos emails.</summary>
     public class EmailService
     {
         /// <summary>Regular Expressions utilizada para validação de e-mails.</summary>

@@ -1,6 +1,6 @@
 namespace Disparo.Plataforma.Domain.Responsaveis
-{
-    /// <summary>Serviço responsável pelas operações relacionadas aos responsáveis.</summary>
+{   
+    /// <summary>Serviço que provê acesso aos dados dos responsáveis.</summary>
     public class ResponsavelService
     {
         
