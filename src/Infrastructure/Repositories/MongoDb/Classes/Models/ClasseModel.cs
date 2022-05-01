@@ -29,7 +29,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes.Models
                 return null;
 
             return new Classe(
-                classeModel.Id,
                 classeModel.Habilitacao,
                 classeModel.AnoOC,
                 classeModel.ModuloSerie     

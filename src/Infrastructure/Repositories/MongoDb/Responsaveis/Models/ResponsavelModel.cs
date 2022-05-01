@@ -33,7 +33,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis.Mo
                 return null;
 
             return new Responsavel(
-                responsavelModel.Id,
                 responsavelModel.Cpf,
                 responsavelModel.Nome,
                 responsavelModel.EnderecoEmail,

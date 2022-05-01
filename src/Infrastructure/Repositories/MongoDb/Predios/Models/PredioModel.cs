@@ -23,10 +23,8 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models
                 return null;
 
             return new Predio(
-                predioModel.Id,
                 predioModel.NumeroIdentificador     
             );
         }
-    
     }
 }

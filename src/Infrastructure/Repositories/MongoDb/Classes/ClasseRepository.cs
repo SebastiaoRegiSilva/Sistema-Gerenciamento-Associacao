@@ -19,16 +19,14 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes
         }
 
         /// <summary>Cadastra a base de dados uma nova classe no sistema.</summary>
-        /// <param name="id">Código de identificação da classe.</param>
         /// <param name="habilitacao">Nome do curso em que o aluno está matriculado.</param>
         /// <param name="anoOC">Ano vigente.</param>
         /// <param name="moduloSerie">Módulo e série vigentes.</param>
         /// <returns>Código de identificação gerado para uma classe cadastrada.</returns>
-        public async Task<string> CadastrarClasseAsync(string id, string habilitacao, int anoOC, string moduloSerie)
+        public async Task<string> CadastrarClasseAsync(string habilitacao, int anoOC, string moduloSerie)
         {
             var model = new ClasseModel
             {
-                Id = id,
                 Habilitacao = habilitacao,
                 AnoOC = anoOC,
                 ModuloSerie = moduloSerie
@@ -40,7 +38,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes
         }
 
         /// <summary>Edita na base de dados uma classe com base no nome da matéria.</summary>
-        /// <param name="id">Código de identificação da classe.</param>
+        /// <param name="habilitacao">Nome do curso em que o aluno está matriculado.</param>
         public async Task EditarClasseAsync(string habilitacao)
         {
             var classeRecuperada = RecuperarClassePorHabilitacaoAsync(habilitacao);

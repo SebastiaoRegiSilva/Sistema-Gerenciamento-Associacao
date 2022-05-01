@@ -15,7 +15,8 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
+        Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
+        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
         
         /// <summary>Edita no repositório um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>

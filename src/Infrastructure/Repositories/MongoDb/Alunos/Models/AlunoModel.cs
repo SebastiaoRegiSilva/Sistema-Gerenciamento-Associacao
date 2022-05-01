@@ -33,7 +33,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos.Models
         /// <summary>Classe onde o aluno está matriculado.<summary>
         public Classe Classe { get; set; }
         
-        
         // <summary>Converte um aluno no modelo do contexto Mongo para um aluno no domínio.</summary>
         /// <param name="alunoModel">Aluno no modelo do contexto Mongo.</param>
         public static implicit operator Aluno(AlunoModel alunoModel)

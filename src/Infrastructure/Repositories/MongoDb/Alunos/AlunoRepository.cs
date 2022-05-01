@@ -28,17 +28,17 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
         /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        public async Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
+        public async Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
+        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
         {
-            // Chamar services da classe.
-            
             var model = new AlunoModel
             {
                 Matricula = matricula,
                 Nome = nome,
                 DataNascimento = dataNascimento,
                 EnderecoEmail = enderecoEmail,
-                NumerosTelefones = numerosTelefones
+                NumerosTelefones = numerosTelefones,
+                Classe = classe
             };
 
             await _ctxAluno.Alunos.InsertOneAsync(model);

@@ -27,9 +27,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
         /// <returns>O código de identificação do armário cadastradado.</returns>
         public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
-        {
-            // Prédio e Aluno chamar o serviço.
-            
+        {            
             var model = new ArmarioModel
             {
                 NumeroIdentificador = numeroIdentificador,
@@ -54,6 +52,8 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
 
             var update = Builders<ArmarioModel>.Update
                 .Set(a => a.NumeroIdentificador, armarioRecuperado.Result.NumeroIdentificador)
+                .Set(a => a.Predio, armarioRecuperado.Result.Predio)
+                .Set(a => a.Aluno, armarioRecuperado.Result.Aluno)
                 .Set(a => a.AnoValidade, armarioRecuperado.Result.AnoValidade);
 
             await _ctxArmario.Armarios.UpdateOneAsync(filter, update);
@@ -73,21 +73,17 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         }
 
         /// <summary>Recupera no base de dados um armário cadastrado com base no nome do aluno.</summary>
-        // /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
-        // public async Task<Armario>RecuperarArmarioAlunoAsync(string nomeAluno)
-        // {
-        //     /// Forçar o método a ser concluído de forma assíncrona. 
-        //     await Task.Yield();
+        /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
+        public async Task<Armario>RecuperarArmarioAlunoAsync(string nomeAluno)
+        {
+            var builder = Builders<ArmarioModel>.Filter;
+            var filter = builder.Eq(a => a.Aluno.Nome, nomeAluno);
             
-        //     // Serviço do aluno.
-        //     // var builder = Builders<ArmarioModel>.Filter;
-        //     // var filter = builder.Eq(a => a., cpf);
-            
-        //     // return await _ctxArmario.Armarios
-        //     //     .Aggregate()
-        //     //     .Match(filter)
-        //     //     .FirstOrDefaultAsync();
-        // }
+            return await _ctxArmario.Armarios
+                .Aggregate()
+                .Match(filter)
+                .FirstOrDefaultAsync();
+        }
 
         /// <summary>Exclui no base de dados um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
