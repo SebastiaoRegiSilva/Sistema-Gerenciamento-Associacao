@@ -29,6 +29,5 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <summary>Exclui no repositório um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         Task ExcluirArmarioAsync(int  numeroIdentificador);
-
     }
 }
