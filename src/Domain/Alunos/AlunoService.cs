@@ -8,19 +8,14 @@ namespace Disparo.Plataforma.Domain.Alunos
     /// <summary>Serviço que provê acesso aos dados dos alunos.</summary>
     public class AlunoService
     {
-         /// <summary>Repositório para armazenamento dos alunos.</summary>
+        /// <summary>Repositório para armazenamento dos alunos.</summary>
         private readonly IAlunoRepository _alunoRep;
         
-        /// <summary>Serviço que provê acesso aos dados e operaçãoes das classes(turmas).</summary>
-        private readonly ClasseService _classeService;
-
-        /// <summary> Construtor com injeção de dependência.</summary>
+        /// <summary>Construtor com injeção de dependência.</summary>
         /// <param name="alunoRep">Repositório para armazenamento dos alunos.</param>
-        /// <param name="classeService">Serviço que provê acesso aos dados e operações relacionadas as classes.</param>
-        public AlunoService(IAlunoRepository alunoRep, ClasseService classeService)
+        public AlunoService(IAlunoRepository alunoRep)
         {
             _alunoRep = alunoRep;
-            _classeService = classeService;
         }
     
         /// <summary>Cadastra no repositório um novo aluno.</summary>
@@ -34,10 +29,6 @@ namespace Disparo.Plataforma.Domain.Alunos
         public async Task<string> CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
         string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
         {
-            // Service da classe.
-            // Recuperar uma classe para poder cadastrar um aluno.
-            // var classeRecuperada = await _classeService.
-            
             var idConta = await _alunoRep.CadastrarAlunoAsync(matricula, nome, dataNascimento, enderecoEmail, numerosTelefones, classe);
 
             return idConta;
@@ -55,27 +46,27 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="matricula">Matrícula do aluno.</param>
         public async Task<Aluno>RecuperarAlunoMatriculaAsync(string matricula)
         {
-
+            return await _alunoRep.RecuperarAlunoMatriculaAsync(matricula);
         }
 
         /// <summary>Recupera no repositório um aluno cadastrado com base no nome.</summary>
         /// <param name="nome">Nome do aluno.</param>
         public async Task<Aluno>RecuperarAlunoNomeAsync(string nome)
         {
-
+            return await _alunoRep.RecuperarAlunoNomeAsync(nome);
         }
 
-        // <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
+        /// <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         public async Task ExcluirAlunoAsync(string matricula)
         {
-
+            await _alunoRep.ExcluirAlunoAsync(matricula);
         }
 
-        // <summary>Exclui no repositório todos alunos cadastrados.</summary>
+        /// <summary>Exclui no repositório todos alunos cadastrados.</summary>
         public async Task ExcluirTodosAlunoAsync()
         {
-
+            await _alunoRep.ExcluirTodosAlunoAsync();
         }
     }
 }
