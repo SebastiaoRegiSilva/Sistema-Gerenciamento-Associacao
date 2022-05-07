@@ -1,4 +1,4 @@
-namespace Disparo.Plataforma.Domain.Parents.Exceptions
+namespace Disparo.Plataforma.Domain.Responsaveis.Exceptions
 {
     /// <summary> Exceção de negócio lançada na tentativa de atribuição de um endereço de CPF inválido para uma entidade ou objeto de valor.</summary>
     public class CPFInvalidException : BusinessException

@@ -1,4 +1,4 @@
-namespace Disparo.Plataforma.Domain.Parents.Exceptions
+namespace Disparo.Plataforma.Domain.Responsaveis.Exceptions
 {
     /// <summary>Exceção da regra de negócio.</summary>
     public class BusinessException : System.Exception

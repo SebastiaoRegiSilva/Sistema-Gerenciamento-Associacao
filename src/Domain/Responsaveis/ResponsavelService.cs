@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Responsaveis
@@ -48,6 +49,34 @@ namespace Disparo.Plataforma.Domain.Responsaveis
         public async Task ExcluirResponsavelAsync(string cpf)
         {
             await _responsavelRep.ExcluirResponsavelAsync(cpf);
+        }
+    
+        // Validações.
+
+        /// <summary>Validar via regex(regular expression) se o formato do endereço de e-mail está correto.</summary>
+        /// <param name="email">Endereço de e-mail a ser validado.</param>
+        public async Task<bool> ValidarEmailAsync(string email)
+        {
+            var emailRegex = new Regex(@"^[\w-.]+@([\w-]+.)+[\w-]{2,4}$");
+            
+            // Forçar o método para se assíncrono.
+            await Task.Yield();
+
+            return emailRegex.IsMatch(email);
+        }
+
+        /// <summary>Validar se o formato do CPF está correto.</summary>
+        /// <param name="cpf">CPF a ser validado.</param>
+        public async Task<bool> ValidarCPFAsync(string cpf)
+        {
+            /*
+                Validação bem simples, só verifica se o formato com os pontos e traços estão corretos.
+            */
+            var cpfRegex = new Regex(@"^[\w-.]+@([\w-]+.)+[\w-]{2,4}$");
+            
+            await Task.Yield();
+
+            return cpfRegex.IsMatch(cpf);
         }
     }
 }
