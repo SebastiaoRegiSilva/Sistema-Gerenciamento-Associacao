@@ -66,7 +66,7 @@ namespace Disparo.Plataforma.Api.Controllers
             else
             {
                 await _responsavelService.ExcluirResponsavelAsync(cpf);
-                return Ok("Responsável editado com sucesso!");
+                return Ok("Responsável excluído com sucesso!");
             }
         }
     }
