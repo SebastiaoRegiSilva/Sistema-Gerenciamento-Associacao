@@ -1,6 +1,7 @@
 using Disparo.Plataforma.Domain.Classes;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Alunos
@@ -67,6 +68,21 @@ namespace Disparo.Plataforma.Domain.Alunos
         public async Task ExcluirTodosAlunoAsync()
         {
             await _alunoRep.ExcluirTodosAlunoAsync();
+        }
+
+        // Validações.
+        
+        /// <summary>Validar via regex(regular expression) se o formato do endereço de e-mail está correto.</summary>
+        /// <param name="email">Endereço de e-mail a ser validado.</param>
+        public async Task<bool> ValidarEmailAsync(string email)
+        {
+            // Melhorar REGEX - etec.sp.gov.br.
+            var emailRegex = new Regex(@"^[\w-.]+@([\w-]+.)+[\w-]{2,4}$");
+            
+            // Forçar o método para se assíncrono.
+            await Task.Yield();
+
+            return emailRegex.IsMatch(email);
         }
     }
 }
