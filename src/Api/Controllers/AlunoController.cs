@@ -73,14 +73,14 @@ namespace Disparo.Plataforma.Api.Controllers
             // Validar se o aluno existe antes de tentar editá-lo.
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if(alunoRecuperado == null)
-                return NotFound();
+                return NotFound($"A matrícula {matricula} não existe na base de dados");
             
             await _alunoService.EditarAlunoAsync(ConverterIntString(matricula));
-            return NoContent();
+            return Ok("Aluno editado com sucesso!");
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int matricula)
+        public async Task<IActionResult> DeleteAluno(int matricula)
         {
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if (alunoRecuperado == null)
@@ -88,6 +88,13 @@ namespace Disparo.Plataforma.Api.Controllers
             
             await _alunoService.ExcluirAlunoAsync(ConverterIntString(matricula));
             return Ok($"O aluno com a matrícula {matricula} foi deletado da base de dados.");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteTodosAluno()
+        {
+            await _alunoService.ExcluirTodosAlunoAsync();
+            return Ok($"Toda base de alunos foi deletada com sucesso.");
         }
 
         /// <summary>Converte um integer em string.</summary>
