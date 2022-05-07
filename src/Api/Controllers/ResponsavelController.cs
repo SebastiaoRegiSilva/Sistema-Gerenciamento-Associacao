@@ -21,7 +21,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         [HttpGet("{cpf}")]
-        public async Task<ActionResult<Responsavel>> BuscarResponsavelNumeroIdentificador(string cpf)
+        public async Task<ActionResult<Responsavel>> BuscarResponsavelCPF(string cpf)
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
