@@ -1,6 +1,4 @@
-using Disparo.Plataforma.Domain.Alunos.Exceptions;
-
-namespace Disparo.Plataforma.Domain.Clients.Exceptions
+namespace Disparo.Plataforma.Domain.Alunos.Exceptions
 {
     /// <summary> Exceção de negócio lançada na tentativa de atribuição de um endereço de e-mail inválido para uma entidade ou objeto de valor.</summary>
     public class AddressEmailInvalidException : BusinessException

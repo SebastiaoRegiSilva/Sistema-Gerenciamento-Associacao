@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace Domain.Plataforma.Domain.Predios
@@ -32,7 +33,7 @@ namespace Domain.Plataforma.Domain.Predios
         {
             return await _predioRep.RecuperarPredioPorNumeroAsync(numeroIdentificador);
         }
-        
+
         /// <summary>Edita no repositório um prédio com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         public async Task EditarPredioAsync(int numeroIdentificador)
@@ -45,6 +46,24 @@ namespace Domain.Plataforma.Domain.Predios
         public async Task ExcluirPredioAsync(int numeroIdentificador)
         {
             await _predioRep.ExcluirPredioAsync(numeroIdentificador);
+        }
+
+        /// <summary>Valida se o prédio já existe ou não para operações dentro da aplicação.<summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        /// <returns></returns>
+        public async Task<bool> ValidarPredioExiste(int numeroIdentificador)
+        {
+            bool predioExiste = false;
+            
+            // Forçar o método para ser assíncrono.
+            await Task.Yield();
+            
+            var predioRecuperado = await _predioRep.RecuperarPredioPorNumeroAsync(numeroIdentificador);
+
+            if(predioRecuperado != null)
+                predioExiste = true;
+            
+            return predioExiste;
         }
     }
 }
