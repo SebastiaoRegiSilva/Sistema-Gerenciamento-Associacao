@@ -58,7 +58,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(string cpf)
+        public async Task<IActionResult> DeleteResponsavel(string cpf)
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
