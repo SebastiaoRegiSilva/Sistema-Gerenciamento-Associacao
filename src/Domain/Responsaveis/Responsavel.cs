@@ -5,8 +5,6 @@ namespace Disparo.Plataforma.Domain.Responsaveis
     /// <summary>Objeto de valor que representa os pais ou responsáveis pelos alunos.</summary>
     public class Responsavel
     {
-        private IEnumerable<string> numerosTelefones;
-
         /// <summary>Cadastro de pessoa física do responsável do aluno.</summary>
         public string Cpf { get; set; }
 

@@ -38,10 +38,6 @@ namespace Disparo.Plataforma.Api
             var alunoService = new AlunoService(alunoRep);
             services.AddSingleton<AlunoService>(alunoService);
 
-            var armarioRep = new ArmarioRepository(mongoConString, mongoDatabase);
-            var armarioService = new ArmarioService(armarioRep);
-            services.AddSingleton<ArmarioService>(armarioService);
-
             var classeRep = new ClasseRepository(mongoConString, mongoDatabase);
             var classeService = new ClasseService(classeRep);
             services.AddSingleton<ClasseService>(classeService);
@@ -53,6 +49,10 @@ namespace Disparo.Plataforma.Api
             var predioRep = new PredioRepository(mongoConString, mongoDatabase);
             var predioService = new PredioService(predioRep);
             services.AddSingleton<PredioService>(predioService);
+
+            var armarioRep = new ArmarioRepository(mongoConString, mongoDatabase);
+            var armarioService = new ArmarioService(armarioRep, alunoService, predioService);
+            services.AddSingleton<ArmarioService>(armarioService);
 
             var responsavelRep = new ResponsavelRepository(mongoConString, mongoDatabase);
             var responsavelService = new ResponsavelService(responsavelRep);
