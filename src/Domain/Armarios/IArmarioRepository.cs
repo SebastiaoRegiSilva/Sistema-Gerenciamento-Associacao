@@ -9,10 +9,9 @@ namespace Disparo.Plataforma.Domain.Armarios
     {
         /// <summary>Cadastra no repositório um novo armário.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
-        /// <param name="predio">Prédio onde está localizado.</param>
-        /// <param name="aluno">Estudante responsável pelo armário.</param>
+        /// <param name="Predio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
-        Task<string>CadastrarArmarioAsync(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade);
+        Task<string>CadastrarArmarioAsync(int numeroIdentificador, Predio Predio, int anoValidade);
         
         /// <summary>Edita no repositório um armário cadastrado.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>

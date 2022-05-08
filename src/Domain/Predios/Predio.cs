@@ -7,7 +7,6 @@ namespace Domain.Plataforma.Domain.Predios
         public int NumeroIdentificador { get; set; }
 
         /// <summary>Construtor para instanciação de um prédio e acesso a suas informações.</summary>
-        /// <param name="id">Código de identificação do prédio.</param>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         public Predio(int numeroIdentificador)
         {

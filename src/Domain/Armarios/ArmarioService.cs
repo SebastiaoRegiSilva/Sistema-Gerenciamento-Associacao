@@ -10,22 +10,35 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <summary>Repositório para armazenamento dos armários.</summary>
         private readonly IArmarioRepository _armarioRep;
         
+        /// <summary>Serviço que provê acesso aos dados e operações de alunos.</summary>
+        private readonly AlunoService _alunoService;
+
+        /// <summary>Serviço que provê acesso aos dados e operaçãoes de prédios.</summary>
+        private readonly PredioService _predioService;
+
+
+
         /// <summary>Construtor com injeção de dependência.</summary>
         /// <param name="armarioRep">Repositório para armazenamento dos armários.</param>
-        public ArmarioService(IArmarioRepository armarioRep)
+        /// <param name="alunoService">Serviço que provê acesso aos dados e operaçãoes de alunos.</param>
+        /// <param name="predioService">Serviço que provê acesso aos dados e operaçãoes de prédios.</param>
+        public ArmarioService(IArmarioRepository armarioRep, AlunoService alunoService, PredioService predioService)
         {
             _armarioRep = armarioRep;
+            _alunoService = alunoService;
+            _predioService = predioService;
         }
         
         /// <summary>Cadastra no repositório um novo armário.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
-        /// <param name="predio">Prédio onde está localizado.</param>
-        /// <param name="aluno">Estudante responsável pelo armário.</param>
+        /// <param name="numeroPredio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
         /// <returns>Código de identificação gerado para um armário cadastrado.</returns>
-        public async Task<string>CadastrarArmarioAsync(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
+        public async Task<string>CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade)
         {
-            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predio, aluno, anoValidade);
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
+
+            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predioRecuperado, anoValidade);
 
             return idArmario;
         }

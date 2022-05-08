@@ -23,16 +23,14 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <summary>Cadastra no base de dados um novo armário.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="predio">Prédio onde está localizado.</param>
-        /// <param name="aluno">Estudante responsável pelo armário.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
         /// <returns>O código de identificação do armário cadastradado.</returns>
-        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, Aluno aluno, int anoValidade)
+        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade)
         {            
             var model = new ArmarioModel
             {
                 NumeroIdentificador = numeroIdentificador,
                 Predio = predio,
-                Aluno = aluno,
                 AnoValidade = anoValidade
             };
 
