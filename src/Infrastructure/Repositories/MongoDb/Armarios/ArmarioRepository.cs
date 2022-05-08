@@ -7,6 +7,7 @@ using MongoDB.Driver;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
 {
+    /// <summary>Implementação do repositório de armários para o Mongo DB.</summary>
     public class ArmarioRepository : IArmarioRepository
     {
         /// <summary>Contexto utilizado pelo base de dados de armários para acessar a coleção de um armário na base de dados.</summary> 

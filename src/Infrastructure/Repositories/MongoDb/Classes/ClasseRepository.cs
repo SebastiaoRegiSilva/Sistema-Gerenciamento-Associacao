@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes
 {
+    /// <summary>Implementação do repositório de classes para o Mongo DB.</summary>
     public class ClasseRepository : IClasseRepository
     {
         /// <summary>Contexto utilizado pelo repositório de classes para acessar a coleção de um classe na base de dados.</summary> 

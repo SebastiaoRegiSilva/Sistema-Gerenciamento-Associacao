@@ -1,6 +1,7 @@
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Pagamentos
 {
-    public class PagamentoContext
+    /// <summary>Contexto utilizado para acesso aos dados dos pagamentos.</summary>
+    class PagamentoContext
     {
         
     }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
 {
+    /// <summary>Implementação do repositório de prédios para o Mongo DB.</summary>
     public class PredioRepository : IPredioRepository
     {
         /// <summary>Contexto utilizado pelo repositório de prédios para acessar a coleção de um prédio na base de dados.</summary> 

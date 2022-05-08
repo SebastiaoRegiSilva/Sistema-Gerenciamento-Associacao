@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
 {
+    /// <summary>Implementação do repositório de alunos para o Mongo DB.</summary>
     public class AlunoRepository : IAlunoRepository
     {
         /// <summary>Contexto utilizado pelo repositório de alunos para acessar a coleção de um aluno na base de dados.</summary> 

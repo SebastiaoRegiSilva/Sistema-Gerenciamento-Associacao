@@ -2,6 +2,7 @@ using Disparo.Plataforma.Domain.Emails;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails
 {
+    /// <summary>Implementação do repositório de emails para o Mongo DB.</summary>
     public class EmailRepository : IEmailRepository
     {
         /// <summary>Contexto utilizado pelo repositório de emails para acessar a coleção de um email na base de dados.</summary> 
