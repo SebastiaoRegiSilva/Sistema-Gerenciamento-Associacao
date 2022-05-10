@@ -76,7 +76,7 @@ namespace Disparo.Plataforma.Api.Controllers
             // Validar se o aluno existe antes de tentar editá-lo.
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if(alunoRecuperado == null)
-                return NotFound($"A matrícula {matricula} não existe na base de dados");
+                return NotFound($"A matrícula {matricula} não existe na base de dados.");
             
             await _alunoService.EditarAlunoAsync(ConverterIntString(matricula));
             return Ok("Aluno editado com sucesso!");

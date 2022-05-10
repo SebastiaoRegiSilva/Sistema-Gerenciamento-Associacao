@@ -25,7 +25,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             
             return Ok();
         }
@@ -52,7 +52,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             else
             {
                 await _responsavelService.EditarResponsavelAsync(cpf);
@@ -65,7 +65,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             else
             {
                 await _responsavelService.ExcluirResponsavelAsync(cpf);

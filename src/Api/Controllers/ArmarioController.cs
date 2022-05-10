@@ -24,7 +24,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             if (armarioRecuperado == null)
-                return NotFound($"O armário com o número {numeroIdentificador} não existe na base de dados");
+                return NotFound($"O armário com o número {numeroIdentificador} não existe na base de dados.");
             
             return Ok(armarioRecuperado);
         }
@@ -49,7 +49,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             if (armarioRecuperado == null)
-                return NotFound($"Armário com o número {numeroIdentificador} não existe na base de dados");
+                return NotFound($"Armário com o número {numeroIdentificador} não existe na base de dados.");
             else
             {
                 await _armarioService.EditarArmarioAsync(numeroIdentificador);
@@ -62,7 +62,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             if (armarioRecuperado == null)
-                return NotFound($"Armário com o nome {numeroIdentificador} não existe na base de dados");
+                return NotFound($"Armário com o nome {numeroIdentificador} não existe na base de dados.");
             else
             {
                 await _armarioService.EditarArmarioAsync(numeroIdentificador);
