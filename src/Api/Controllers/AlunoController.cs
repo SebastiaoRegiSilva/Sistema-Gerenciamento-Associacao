@@ -57,12 +57,15 @@ namespace Disparo.Plataforma.Api.Controllers
         /// <param name="classe">Classe que o aluno será cadastradado.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarAluno(int matricula, string nome,  DateTime dataNascimento, 
-        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
+        string enderecoEmail, string numerosTelefones, Classe classe)
         {
             if(! _alunoService.ValidarEmailAsync(enderecoEmail).Result)
                 throw new AddressEmailInvalidException(enderecoEmail);
             
-            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, dataNascimento, enderecoEmail, numerosTelefones, classe);         
+            var numeros = new List<string>();
+            numeros.Add(numerosTelefones);
+
+            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, dataNascimento, enderecoEmail, numeros, classe);         
 
             return Ok("Aluno cadastrado com sucesso.");
         }
