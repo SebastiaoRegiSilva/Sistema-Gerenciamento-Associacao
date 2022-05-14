@@ -25,21 +25,24 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             
             return Ok();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastrarResponsavel(string cpf, string nome, string enderecoEmail, IEnumerable<string>numerosTelefones)
+        public async Task<IActionResult> CadastrarResponsavel(string cpf, string nome, string enderecoEmail, string numerosTelefones)
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
+            
+            var numeros = new List<string>();
+            numeros.Add(numerosTelefones);
             
             if(responsavelRecuperado != null)
                 return Ok("Já existe um responsável cadastrado com esse CPF no sistema!");
             else
             {
-                await _responsavelService.CadastrarResponsavelAsync(cpf, nome, enderecoEmail, numerosTelefones);        
+                await _responsavelService.CadastrarResponsavelAsync(cpf, nome, enderecoEmail, numeros);        
                 return Ok("Responsável cadastrado com sucesso!");
             }
         }
@@ -49,7 +52,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             else
             {
                 await _responsavelService.EditarResponsavelAsync(cpf);
@@ -62,7 +65,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var responsavelRecuperado = await _responsavelService.RecuperarResponsavelPorCPFAsync(cpf);
             if (responsavelRecuperado == null)
-                return NotFound("Responsável com esse número  de CPF não existe na base de dados");
+                return NotFound("Responsável com esse número  de CPF não existe na base de dados.");
             else
             {
                 await _responsavelService.ExcluirResponsavelAsync(cpf);

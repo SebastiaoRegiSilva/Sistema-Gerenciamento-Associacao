@@ -16,8 +16,6 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <summary>Serviço que provê acesso aos dados e operaçãoes de prédios.</summary>
         private readonly PredioService _predioService;
 
-
-
         /// <summary>Construtor com injeção de dependência.</summary>
         /// <param name="armarioRep">Repositório para armazenamento dos armários.</param>
         /// <param name="alunoService">Serviço que provê acesso aos dados e operaçãoes de alunos.</param>

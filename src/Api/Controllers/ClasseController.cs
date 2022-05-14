@@ -24,7 +24,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"A classe com esse nome {habilitacao} não existe na base de dados");
+                return NotFound($"A classe com esse nome {habilitacao} não existe na base de dados.");
             
             return Ok(classeRecuperada);
         }
@@ -49,7 +49,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados");
+                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados.");
             else
             {
                 await _classeService.EditarClasseAsync(habilitacao);
@@ -62,7 +62,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados");
+                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados.");
             else
             {
                 await _classeService.EditarClasseAsync(habilitacao);

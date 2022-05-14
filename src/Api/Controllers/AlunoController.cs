@@ -57,12 +57,15 @@ namespace Disparo.Plataforma.Api.Controllers
         /// <param name="classe">Classe que o aluno será cadastradado.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarAluno(int matricula, string nome,  DateTime dataNascimento, 
-        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
+        string enderecoEmail, string numerosTelefones, Classe classe)
         {
             if(! _alunoService.ValidarEmailAsync(enderecoEmail).Result)
                 throw new AddressEmailInvalidException(enderecoEmail);
             
-            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, dataNascimento, enderecoEmail, numerosTelefones, classe);         
+            var numeros = new List<string>();
+            numeros.Add(numerosTelefones);
+
+            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, dataNascimento, enderecoEmail, numeros, classe);         
 
             return Ok("Aluno cadastrado com sucesso.");
         }
@@ -73,7 +76,7 @@ namespace Disparo.Plataforma.Api.Controllers
             // Validar se o aluno existe antes de tentar editá-lo.
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if(alunoRecuperado == null)
-                return NotFound($"A matrícula {matricula} não existe na base de dados");
+                return NotFound($"A matrícula {matricula} não existe na base de dados.");
             
             await _alunoService.EditarAlunoAsync(ConverterIntString(matricula));
             return Ok("Aluno editado com sucesso!");
