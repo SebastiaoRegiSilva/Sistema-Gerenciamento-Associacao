@@ -61,18 +61,19 @@ namespace Disparo.Plataforma.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "api_disparo_emails", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "associacao_pais_mestres", Version = "v1" });
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            // Corrigir, pois está rodando como se fosse em produção.
+            if (!env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api_disparo_emails v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "associacao_pais_mestres v1"));
             }
 
             app.UseHttpsRedirection();

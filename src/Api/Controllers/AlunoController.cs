@@ -82,6 +82,7 @@ namespace Disparo.Plataforma.Api.Controllers
             return Ok("Aluno editado com sucesso!");
         }
 
+        [Route("deletar/{matricula}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteAluno(int matricula)
         {
@@ -93,6 +94,7 @@ namespace Disparo.Plataforma.Api.Controllers
             return Ok($"O aluno com a matrícula {matricula} foi deletado da base de dados.");
         }
 
+        [Route("deletar/todos")]
         [HttpDelete]
         public async Task<IActionResult> DeleteTodosAluno()
         {
