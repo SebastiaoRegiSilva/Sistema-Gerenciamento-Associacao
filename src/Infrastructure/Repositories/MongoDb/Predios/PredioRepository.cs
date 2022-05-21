@@ -19,7 +19,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
             _ctxPredio = new PredioContext(conString, database);
         }
 
-        // <summary>Cadastra na base de dados um novo prédio no sistema.</summary>
+        /// <summary>Cadastra na base de dados um novo prédio no sistema.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         public async Task<string> CadastrarPredioAsync(int numeroIdentificador)
         {
@@ -48,7 +48,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios
             await _ctxPredio.Predios.UpdateOneAsync(filter, update);
         }
 
-         /// <summary>Exclui na base de dados um prédio cadastrado no sistema com base no número identificador.</summary>
+        /// <summary>Exclui na base de dados um prédio cadastrado no sistema com base no número identificador.</summary>
         /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         public async Task ExcluirPredioAsync(int numeroIdentificador)
         {

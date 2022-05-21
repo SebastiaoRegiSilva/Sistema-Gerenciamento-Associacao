@@ -34,7 +34,7 @@ namespace Disparo.Plataforma.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CadastrarPredio(int numeroIdentificador)
         {
-            // Validar se prédio já existi.
+            // Valida se prédio já existe.
             if(_predioService.ValidarPredioExiste(numeroIdentificador).Result)
                 throw new IdentificationNumberInvalidException(numeroIdentificador);
 
