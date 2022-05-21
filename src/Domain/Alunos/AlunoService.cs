@@ -35,6 +35,14 @@ namespace Disparo.Plataforma.Domain.Alunos
             return idConta;
         }
 
+        /// <summary>Adiciona um novo número de telefone ao aluno.</summary>
+        /// <param name="matricula">Matrícula do aluno.</param>
+        /// <param name="numeros">úmeros para comunicação direta com o aluno.</param>
+        public async Task AdicionarNumeroTelefoneAsync(string matricula, List<string> numeros)
+        {
+            await _alunoRep.AdicionarNumeroTelefoneAsync(matricula, numeros);
+        }
+
         /// <summary>Edita no repositório um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         public async Task EditarAlunoAsync(string matricula)
@@ -65,9 +73,9 @@ namespace Disparo.Plataforma.Domain.Alunos
         }
 
         /// <summary>Exclui no repositório todos alunos cadastrados.</summary>
-        public async Task ExcluirTodosAlunoAsync()
+        public async Task ExcluirTodosAlunosAsync()
         {
-            await _alunoRep.ExcluirTodosAlunoAsync();
+            await _alunoRep.ExcluirTodosAlunosAsync();
         }
 
         // Validações.

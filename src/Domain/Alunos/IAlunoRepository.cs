@@ -30,11 +30,16 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="nome">Nome do aluno.</param>
         Task<Aluno>RecuperarAlunoNomeAsync(string nome);
 
-        // <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
+        /// <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         Task ExcluirAlunoAsync(string matricula);
 
-        // <summary>Exclui no repositório todos alunos cadastrados.</summary>
-        Task ExcluirTodosAlunoAsync();
+        /// <summary>Exclui no repositório todos alunos cadastrados.</summary>
+        Task ExcluirTodosAlunosAsync();
+        
+        /// <summary>Adicionar número de telefone.</summary>
+        /// <param name="matricula">Matrícula da aluno.</param>
+        /// <param name="numeros">Números para comunicação direta com o aluno.</param>
+        Task AdicionarNumeroTelefoneAsync(string matricula, List<string> numeros);
     }
 }
