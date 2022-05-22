@@ -52,17 +52,15 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         public async Task AdicionarNumeroTelefoneAsync(string matricula, List<string> numerosTelefones)
         {
-            var alunoRecuperado = RecuperarAlunoMatriculaAsync(matricula);
+            var alunoRecuperado = RecuperarAlunoMatriculaAsync(matricula).Result;
             
             var builder = Builders<AlunoModel>.Filter;
+            var teste = new FieldDefinitionBuilder();
+            
             var filter = builder.Eq(a => a.Matricula, matricula);
 
             var update = Builders<AlunoModel>.Update
-                .Set(a => a.Matricula, alunoRecuperado.Result.Matricula)
-                .Set(a => a.Nome, alunoRecuperado.Result.Nome)
-                .Set(a => a.DataNascimento, alunoRecuperado.Result.DataNascimento)
-                .Set(a => a.EnderecoEmail, alunoRecuperado.Result.EnderecoEmail)
-                .Set(a => a.NumerosTelefones, alunoRecuperado.Result.NumerosTelefones);
+                .AddToSet(teste, numerosTelefones);
 
             await _ctxAluno.Alunos.UpdateOneAsync(filter, update);
         }

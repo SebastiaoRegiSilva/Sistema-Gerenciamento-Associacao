@@ -75,6 +75,7 @@ namespace Disparo.Plataforma.Api.Controllers
         /// </summary>
         /// <param name="matricula">Matrícula que o aluno possui no NSA.</param>
         /// <param name="numerosTelefones">Formas de contato telefônico direto com o aluno.</param>
+        [Route("adicionarNumero/{matricula}/{numerosTelefones}")]
         [HttpPut]
         public async Task<IActionResult> AdicionarNumeroTelefone(int matricula, string numerosTelefones)
         {
