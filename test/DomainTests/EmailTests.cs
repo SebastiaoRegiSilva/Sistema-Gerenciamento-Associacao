@@ -7,12 +7,12 @@ using System.Threading;
 
 namespace Disparo.Plataforma.DomainTests
 {
-    /// <summary>Classe de testes para o domínio de classes.</summary>
+    /// <summary>Classe de testes para o domínio de emails.</summary>
     [TestClass]
-    public class ClasseTests
+    public class EmailTests
     {
-        /// <summary>Serviço que provê acesso aos dados e operações relacionadas as classes na plataforma.</summary>
-        private static ClasseService _classeService = null;
+        /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos emails na plataforma.</summary>
+        private static EmailService _emailService = null;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -31,8 +31,8 @@ namespace Disparo.Plataforma.DomainTests
             string conString = config.GetValue<string>("DB:MongoDB:ConString");
             string database = config.GetValue<string>("DB:MongoDB:Database");
 
-            var classeRepository = new ClasseRepository(conString, database);
-            _classeService = new ClasseService(classeRepository);
+            var emailRepository = new EmailRepository(conString, database);
+            _emailService = new EmailService(emailRepository);
         }
     }
 }
