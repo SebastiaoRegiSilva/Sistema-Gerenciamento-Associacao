@@ -17,7 +17,7 @@ namespace Disparo.Plataforma.Api.Controllers
         private readonly AlunoService _alunoService;
 
         /// <summary>Construtor com parâmetros para inicialização.</summary>
-        /// <param name="alunoeService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos alunos.</param>
+        /// <param name="alunoService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos alunos.</param>
         public AlunoController(AlunoService alunoService)
         {
             _alunoService = alunoService;
