@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Responsaveis;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.IO;

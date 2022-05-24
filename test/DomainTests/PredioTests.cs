@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios;
 using Domain.Plataforma.Domain.Predios;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.IO;

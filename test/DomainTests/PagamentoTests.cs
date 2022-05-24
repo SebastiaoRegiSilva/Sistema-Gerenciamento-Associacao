@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Pagamentos;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Pagamentos;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.IO;
