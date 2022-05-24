@@ -1,5 +1,5 @@
-using Disparo.Plataforma.Domain.Emails;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails;
+using Disparo.Plataforma.Domain.Pagamentos;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Pagamentos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.IO;
@@ -7,12 +7,12 @@ using System.Threading;
 
 namespace Disparo.Plataforma.DomainTests
 {
-    /// <summary>Classe de testes para o domínio de emails.</summary>
+    /// <summary>Classe de testes para o domínio de pagamentos.</summary>
     [TestClass]
-    public class EmailTests
+    public class PagamentoTests
     {
-        /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos emails na plataforma.</summary>
-        private static EmailService _emailService = null;
+        /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos pagamentos na plataforma.</summary>
+        private static PagamentoService _pagamentoService = null;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -31,8 +31,8 @@ namespace Disparo.Plataforma.DomainTests
             string conString = config.GetValue<string>("DB:MongoDB:ConString");
             string database = config.GetValue<string>("DB:MongoDB:Database");
 
-            var emailRepository = new EmailRepository(conString, database);
-            _emailService = new EmailService(emailRepository);
+            var pagamentoRepository = new PagamentoRepository(conString, database);
+            _pagamentoService = new PagamentoService(pagamentoRepository);
         }
     }
 }
