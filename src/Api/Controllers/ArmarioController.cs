@@ -1,4 +1,5 @@
 using Disparo.Plataforma.Domain.Armarios;
+using Domain.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -12,11 +13,16 @@ namespace Disparo.Plataforma.Api.Controllers
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos armários.</summary>
         private readonly ArmarioService _armarioService;
 
+        /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos prédios.</summary>
+        private readonly PredioService _predioService;
+
         /// <summary>Construtor com parâmetros para inicialização.</summary>
         /// <param name="armarioService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos armários.</param>
-        public ArmarioController(ArmarioService armarioService)
+        /// <param name="predioService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos prédios.</param>
+        public ArmarioController(ArmarioService armarioService, PredioService predioService)
         {
             _armarioService = armarioService;
+            _predioService = predioService;
         }
 
         [HttpGet("{numeroIdentificador}")]
@@ -34,12 +40,13 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<IActionResult> CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade)
         {
             var armariorecuperada = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
-            
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
+
             if(armariorecuperada != null)
                 return Ok($"Já existe um armário cadastrada com o número {numeroIdentificador} no sistema!");
             else
             {
-                await _armarioService.CadastrarArmarioAsync(numeroPredio, numeroIdentificador, anoValidade);        
+                await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade);        
                 return Ok("Armário cadastrado com sucesso!");
             }
         }
