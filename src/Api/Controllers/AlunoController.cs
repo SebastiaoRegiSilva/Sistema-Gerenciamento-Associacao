@@ -70,27 +70,6 @@ namespace Disparo.Plataforma.Api.Controllers
             return Ok("Aluno cadastrado com sucesso.");
         }
 
-        /// <summary>
-        /// Adicionar número de telefone.
-        /// </summary>
-        /// <param name="matricula">Matrícula que o aluno possui no NSA.</param>
-        /// <param name="numerosTelefones">Formas de contato telefônico direto com o aluno.</param>
-        [Route("adicionarNumero/{matricula}/{numerosTelefones}")]
-        [HttpPut]
-        public async Task<IActionResult> AdicionarNumeroTelefone(int matricula, string numerosTelefones)
-        {
-            // Validar se o aluno existe antes de tentar editá-lo.
-            var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
-            if(alunoRecuperado == null)
-                return NotFound($"A matrícula {matricula} não existe na base de dados.");
-            
-            var numeros = new List<string>();
-            numeros.Add(numerosTelefones);
-
-            await _alunoService.AdicionarNumeroTelefoneAsync(ConverterIntString(matricula), numeros);
-            return Ok("Novo número adicionado com sucesso!");
-        }
-        
         [HttpPut]
         public async Task<IActionResult> EditarAluno(int matricula)
         {

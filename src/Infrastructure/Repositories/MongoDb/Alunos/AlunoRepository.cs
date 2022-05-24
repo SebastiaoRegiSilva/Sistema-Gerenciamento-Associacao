@@ -47,25 +47,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
             return model.Id;
         }
         
-        /// <summary>Adiciona um número de telefone na base de dados a um aluno cadastrado.</summary>
-        /// <param name="matricula">Matrícula do aluno.</param>
-        /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
-        public async Task AdicionarNumeroTelefoneAsync(string matricula, List<string> numerosTelefones)
-        {
-            var alunoRecuperado = RecuperarAlunoMatriculaAsync(matricula).Result;
-            
-            var builder = Builders<AlunoModel>.Filter;
-            var teste = new FieldDefinitionBuilder();
-            
-            var filter = builder.Eq(a => a.Matricula, matricula);
-
-            var update = Builders<AlunoModel>.Update
-                .AddToSet(teste, numerosTelefones);
-
-            await _ctxAluno.Alunos.UpdateOneAsync(filter, update);
-        }
-        
-        
         /// <summary>Edita na base de dados um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         public async Task EditarAlunoAsync(string matricula)

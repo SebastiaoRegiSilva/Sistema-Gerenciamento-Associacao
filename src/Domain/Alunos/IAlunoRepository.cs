@@ -36,10 +36,5 @@ namespace Disparo.Plataforma.Domain.Alunos
 
         /// <summary>Exclui no repositório todos alunos cadastrados.</summary>
         Task ExcluirTodosAlunosAsync();
-        
-        /// <summary>Adicionar número de telefone.</summary>
-        /// <param name="matricula">Matrícula da aluno.</param>
-        /// <param name="numeros">Números para comunicação direta com o aluno.</param>
-        Task AdicionarNumeroTelefoneAsync(string matricula, List<string> numeros);
     }
 }
