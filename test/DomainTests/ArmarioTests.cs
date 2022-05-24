@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Disparo.Plataforma.DomainTests
 {
-    /// <summary>Classe de testes para o domínio de alunos.</summary>
+    /// <summary>Classe de testes para o domínio de armários.</summary>
     [TestClass]
     public class ArmarioTests
     {

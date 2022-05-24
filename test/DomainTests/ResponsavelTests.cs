@@ -1,5 +1,5 @@
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Responsaveis;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.IO;
@@ -7,12 +7,12 @@ using System.Threading;
 
 namespace Disparo.Plataforma.DomainTests
 {
-    /// <summary>Classe de testes para o domínio de prédios.</summary>
+    /// <summary>Classe de testes para o domínio de responsáveis.</summary>
     [TestClass]
-    public class PredioTests
+    public class ResponsavelTests
     {
-        /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos prédios na plataforma.</summary>
-        private static PredioService _predioService = null;
+        /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos responsáveis na plataforma.</summary>
+        private static ResponsavelService _responsavelService = null;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -31,8 +31,8 @@ namespace Disparo.Plataforma.DomainTests
             string conString = config.GetValue<string>("DB:MongoDB:ConString");
             string database = config.GetValue<string>("DB:MongoDB:Database");
 
-            var predioRepository = new PredioRepository(conString, database);
-            _predioService = new PredioService(predioRepository);
+            var responsavelRepository = new ResponsavelRepository(conString, database);
+            _responsavelService = new ResponsavelService(responsavelRepository);
         }
     }
 }
