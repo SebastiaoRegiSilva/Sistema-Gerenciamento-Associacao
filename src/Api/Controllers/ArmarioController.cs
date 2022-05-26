@@ -37,12 +37,11 @@ namespace Disparo.Plataforma.Api.Controllers
 
         /// <summary>Cadastrar armário.</summary>
         [HttpPost]
-        public async Task<IActionResult> CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade)
+        public async Task<IActionResult> CadastrarArmarioAsync(int numeroIdentificador, int anoValidade, Predio predio)
         {
-            var armariorecuperada = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
-            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
-
-            if(armariorecuperada != null)
+            var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
+            
+            if(armarioRecuperado != null)
                 return Ok($"Já existe um armário cadastrada com o número {numeroIdentificador} no sistema!");
             else
             {
