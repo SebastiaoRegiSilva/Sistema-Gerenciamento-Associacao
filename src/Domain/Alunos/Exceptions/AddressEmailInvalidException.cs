@@ -6,6 +6,6 @@ namespace Disparo.Plataforma.Domain.Alunos.Exceptions
         /// <summary>Construtor com parâmetros para inicialização.</summary>
         /// <param name="invalidAddress">Endereço de e-mail inválido.</param>
         public AddressEmailInvalidException(string invalidAddress) :
-            base("O endereço de email " + invalidAddress + " está incorreto.") {}
+            base($"O endereço de email {invalidAddress} está incorreto.") {}
     }
 }
