@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Alunos;
 using Domain.Plataforma.Domain.Predios;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Armarios
@@ -28,5 +29,8 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <summary>Exclui no repositório um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         Task ExcluirArmarioAsync(int  numeroIdentificador);
+        
+        /// <summary>Lista dos armários disponíveis no repositório.</summary>
+        Task<IEnumerable<Armario>> RecuperarTodosArmariosDisponiveis();
     }
 }

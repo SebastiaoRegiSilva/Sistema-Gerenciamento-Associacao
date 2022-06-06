@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Disparo.Plataforma.Domain.Alunos;
 using Disparo.Plataforma.Domain.Armarios;
@@ -70,7 +71,27 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
                 .Match(filter)
                 .FirstOrDefaultAsync();
         }
+        
+        /// <summary>Recupera no base de dados um armario cadastrado com base no número.</summary>
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
+        public async Task<IEnumerable<Armario>>RecuperarTodosArmariosDisponiveis()
+        {
+            // Lista provisória para teste.
+            var listaArmariosDisponiveis = new List<Armario>();
 
+            var builder = Builders<ArmarioModel>.Filter;
+            var filter = builder.Eq(a => a.Disponivel, true);
+            
+            await _ctxArmario.Armarios
+                .Aggregate()
+                .Match(filter)
+                .FirstOrDefaultAsync();
+
+            return listaArmariosDisponiveis;
+        }
+
+        
+        
         /// <summary>Recupera no base de dados um armário cadastrado com base no nome do aluno.</summary>
         /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
         public async Task<Armario>RecuperarArmarioAlunoAsync(string nomeAluno)
