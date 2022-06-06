@@ -8,7 +8,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade armário.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ArmarioController : ControllerBase
+    public class ArmarioController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos armários.</summary>
         private readonly ArmarioService _armarioService;
@@ -49,6 +49,17 @@ namespace Disparo.Plataforma.Api.Controllers
             return Ok("Armário cadastrado com sucesso!");
         }
 
+        /// <summary>Lista de todos os armários disponíveis no sistema.<summary>  
+        /// <returns>Um Json com todos os armários disponíveis.</returns>
+        [HttpGet]
+        public async Task<ActionResult<Armario>> ListarTodosArmariosDisponiveis()
+        {
+            // Recupera todos armários disponíveis.
+            var listaArmarios = await _armarioService.ListarTodosArmariosDisponiveisAsync();
+            
+            return Json(listaArmarios); 
+        }
+        
         [HttpPut]
         public async Task<IActionResult> EditarArmarioAsync(int numeroIdentificador)
         {
