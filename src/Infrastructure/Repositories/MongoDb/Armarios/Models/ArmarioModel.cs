@@ -25,6 +25,9 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models
 
         /// <summary>Ano vigente com permisssão de uso do armário.</summary>
         public int AnoValidade { get; set; }
+        
+        /// <summary>Identificar que tal armário já possui um responsável.</summary>
+        public bool Disponivel { get; set; }
 
         // <summary>Converte um armário no modelo do contexto Mongo para um armário no domínio.</summary>
         /// <param name="armarioModel">Armário no modelo do contexto Mongo.</param>
