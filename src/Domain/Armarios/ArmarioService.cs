@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Alunos;
 using Domain.Plataforma.Domain.Predios;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Armarios
@@ -55,10 +56,16 @@ namespace Disparo.Plataforma.Domain.Armarios
             return await _armarioRep.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
         }
 
+        /// <summary>Lista dos armários disponíveis no repositório.</summary>
+        public async Task<IEnumerable<Armario>> ListarTodosArmariosDisponiveisAsync()
+        {
+            return await _armarioRep.RecuperarTodosArmariosDisponiveis();
+        }
+
         /// <summary>Recupera no repositório um armário cadastrado com base no nome do aluno.</summary>
         /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
         //Task<Armario>RecuperarArmarioAlunoAsync(int  nomeAluno){}
-        
+
         /// <summary>Exclui no repositório um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         public async Task ExcluirArmarioAsync(int  numeroIdentificador)
