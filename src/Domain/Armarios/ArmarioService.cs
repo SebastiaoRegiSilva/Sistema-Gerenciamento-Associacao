@@ -32,12 +32,13 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="numeroPredio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        /// <param name="disponivel">Disponibilidade do armário.</param>
         /// <returns>Código de identificação gerado para um armário cadastrado.</returns>
-        public async Task<string>CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade)
+        public async Task<string>CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade, bool disponivel)
         {
             var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
 
-            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predioRecuperado, anoValidade);
+            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predioRecuperado, anoValidade, disponivel);
 
             return idArmario;
         }

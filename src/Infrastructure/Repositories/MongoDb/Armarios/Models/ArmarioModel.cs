@@ -39,7 +39,8 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models
             return new Armario(
                 armarioModel.NumeroIdentificador,
                 armarioModel.Predio,
-                armarioModel.AnoValidade
+                armarioModel.AnoValidade,
+                armarioModel.Disponivel
             );
         }
     }

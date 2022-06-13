@@ -26,14 +26,16 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        /// <param name="disponivel">Disponibilidade do armário.</param>
         /// <returns>O código de identificação do armário cadastradado.</returns>
-        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade)
+        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade, bool disponivel)
         {            
             var model = new ArmarioModel
             {
                 NumeroIdentificador = numeroIdentificador,
                 Predio = predio,
-                AnoValidade = anoValidade
+                AnoValidade = anoValidade,
+                Disponivel = disponivel
             };
 
             await _ctxArmario.Armarios.InsertOneAsync(model);
@@ -76,22 +78,15 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         public async Task<IEnumerable<Armario>>RecuperarTodosArmariosDisponiveis()
         {
-            // Lista provisória para teste.
-            var listaArmariosDisponiveis = new List<Armario>();
-
             var builder = Builders<ArmarioModel>.Filter;
             var filter = builder.Eq(a => a.Disponivel, true);
             
-            await _ctxArmario.Armarios
+            return (IEnumerable<Armario>)await _ctxArmario.Armarios
                 .Aggregate()
                 .Match(filter)
                 .FirstOrDefaultAsync();
-
-            return listaArmariosDisponiveis;
         }
 
-        
-        
         /// <summary>Recupera no base de dados um armário cadastrado com base no nome do aluno.</summary>
         /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
         public async Task<Armario>RecuperarArmarioAlunoAsync(string nomeAluno)

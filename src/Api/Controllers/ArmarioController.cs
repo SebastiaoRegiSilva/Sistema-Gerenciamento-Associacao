@@ -42,10 +42,12 @@ namespace Disparo.Plataforma.Api.Controllers
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
 
+            bool disponivel = true;
+
             if(armarioRecuperado != null)
                 return Ok($"Já existe um armário cadastrada com o número {numeroIdentificador} no sistema!");
             
-            await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade);        
+            await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade, disponivel);        
             return Ok("Armário cadastrado com sucesso!");
         }
 
