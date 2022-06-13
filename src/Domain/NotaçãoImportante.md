@@ -1,3 +1,7 @@
+O que é domínio?
+
+A **classe de domínio** nada mais é do que uma representação de uma **entidade de negócio**. Por exemplo, no caso de um sistema para uma pizzaria, provavelmente teríamos classes de domínio como pizza, bebida, cliente, ingredientes, pedido, entre outras.
+
 Diferença entre Entidade e Objeto de Valor.
 
 Uma Entidade, além de possuir um Identificador, possui o seu tempo de vida dentro do dominio. 
