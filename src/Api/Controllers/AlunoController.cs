@@ -11,7 +11,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade aluno.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class AlunoController : ControllerBase
+    public class AlunoController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos alunos.</summary>
         private readonly AlunoService _alunoService;

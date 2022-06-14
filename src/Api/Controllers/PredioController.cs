@@ -8,7 +8,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade prédio.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class PredioController : ControllerBase
+    public class PredioController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos prédios.</summary>
         private readonly PredioService _predioService;

@@ -7,7 +7,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade classe.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ClasseController : ControllerBase
+    public class ClasseController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas as classes.</summary>
         private readonly ClasseService _classeService;

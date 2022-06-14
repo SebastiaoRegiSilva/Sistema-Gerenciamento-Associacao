@@ -8,7 +8,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade responsável.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ResponsavelController : ControllerBase
+    public class ResponsavelController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos responsáveis.</summary>
         private readonly ResponsavelService _responsavelService;
