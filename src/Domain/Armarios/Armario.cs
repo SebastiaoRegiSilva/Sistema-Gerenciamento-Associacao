@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Domain.Alunos;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 
 namespace Disparo.Plataforma.Domain.Armarios
 {

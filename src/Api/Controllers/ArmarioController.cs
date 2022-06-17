@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Domain.Armarios;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -25,6 +25,7 @@ namespace Disparo.Plataforma.Api.Controllers
             _predioService = predioService;
         }
 
+        /// <summary>Buscar armário por número.</summary>
         [HttpGet("{numeroIdentificador}")]
         public async Task<ActionResult<Armario>> BuscarArmarioNumeroAsync(int numeroIdentificador)
         {
@@ -32,7 +33,7 @@ namespace Disparo.Plataforma.Api.Controllers
             if (armarioRecuperado == null)
                 return NotFound($"O armário com o número {numeroIdentificador} não existe na base de dados.");
             
-            return Ok(armarioRecuperado);
+            return Json(armarioRecuperado);
         }
 
         /// <summary>Cadastrar armário.</summary>

@@ -9,7 +9,7 @@ using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Emails;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

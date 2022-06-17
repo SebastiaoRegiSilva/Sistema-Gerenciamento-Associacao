@@ -1,4 +1,4 @@
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

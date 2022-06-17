@@ -1,4 +1,4 @@
-namespace Domain.Plataforma.Domain.Predios
+namespace Disparo.Plataforma.Domain.Predios
 {
     /// <summary>Objeto de valor que representa o endereço de um prédio na ETEC. </summary>
     public class Predio

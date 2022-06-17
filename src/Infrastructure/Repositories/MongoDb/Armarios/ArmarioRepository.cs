@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Disparo.Plataforma.Domain.Alunos;
 using Disparo.Plataforma.Domain.Armarios;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using MongoDB.Driver;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios

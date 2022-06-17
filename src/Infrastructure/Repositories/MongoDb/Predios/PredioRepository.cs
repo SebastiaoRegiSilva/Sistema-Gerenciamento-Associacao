@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Predios.Models;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using MongoDB.Driver;
 using System.Threading.Tasks;
 

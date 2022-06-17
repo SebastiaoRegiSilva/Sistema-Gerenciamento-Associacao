@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Domain.Predios.Exceptions;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -58,7 +58,7 @@ namespace Disparo.Plataforma.Api.Controllers
             if(_predioService.ValidarPredioExiste(numeroIdentificador).Result)
                 await _predioService.ExcluirPredioAsync(numeroIdentificador);
 
-            return Ok($"O prédio de número {numeroIdentificador} foi excluído da base de dados!");
+            return Json($"O prédio de número {numeroIdentificador} foi excluído da base de dados!");
         }
     }
 }

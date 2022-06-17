@@ -1,6 +1,6 @@
 using Disparo.Plataforma.Domain.Alunos;
 using Disparo.Plataforma.Domain.Armarios;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 

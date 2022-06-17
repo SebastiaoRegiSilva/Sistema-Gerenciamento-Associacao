@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Domain.Alunos;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
