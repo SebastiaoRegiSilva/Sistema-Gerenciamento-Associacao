@@ -30,10 +30,8 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<ActionResult<Aluno>> BuscarPorMatricula(int matricula)
         {
             var aluno = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
-            if (aluno == null)
-                return NotFound();
             
-            return Json(aluno);
+            return aluno == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(aluno); 
         }
 
         /// <summary> Recuperar no repositório o aluno com base em seu nome.</summary>
@@ -43,10 +41,8 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<ActionResult<Aluno>> BuscarPorNome(string nome)
         {
             var aluno = await _alunoService.RecuperarAlunoNomeAsync(nome);
-            if (aluno == null)
-                return NotFound();
             
-            return Json(aluno);
+            return aluno == null? Json($"O aluno com a matrícula {nome} não existe na base de dados."): Json(aluno);
         }
         
         /// <summary> Cadastrar no repositório um aluno.</summary>
