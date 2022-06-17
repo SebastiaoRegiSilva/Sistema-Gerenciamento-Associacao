@@ -33,7 +33,7 @@ namespace Disparo.Plataforma.Api.Controllers
             if (aluno == null)
                 return NotFound();
             
-            return Ok(aluno);
+            return Json(aluno);
         }
 
         /// <summary> Recuperar no repositório o aluno com base em seu nome.</summary>
@@ -46,7 +46,7 @@ namespace Disparo.Plataforma.Api.Controllers
             if (aluno == null)
                 return NotFound();
             
-            return Ok(aluno);
+            return Json(aluno);
         }
         
         /// <summary> Cadastrar no repositório um aluno.</summary>
