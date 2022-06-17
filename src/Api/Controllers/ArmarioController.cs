@@ -84,7 +84,7 @@ namespace Disparo.Plataforma.Api.Controllers
                 return NotFound($"Armário com o nome {numeroIdentificador} não existe na base de dados.");
             else
             {
-                await _armarioService.EditarArmarioAsync(numeroIdentificador);
+                await _armarioService.ExcluirArmarioAsync(numeroIdentificador);
                 return Ok("Armário excluído com sucesso!");
             }
         }
