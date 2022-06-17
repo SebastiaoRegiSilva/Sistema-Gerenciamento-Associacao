@@ -34,17 +34,6 @@ namespace Disparo.Plataforma.Api.Controllers
             return aluno == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(aluno); 
         }
 
-        /// <summary> Recuperar no repositório o aluno com base em seu nome.</summary>
-        /// <param name="nome">Nome do aluno.</param>
-        /// <returns>Um aluno cadastrado no repositório.</returns>
-        [HttpGet("{nome}")]
-        public async Task<ActionResult<Aluno>> BuscarPorNome(string nome)
-        {
-            var aluno = await _alunoService.RecuperarAlunoNomeAsync(nome);
-            
-            return aluno == null? Json($"O aluno com a matrícula {nome} não existe na base de dados."): Json(aluno);
-        }
-        
         /// <summary> Cadastrar no repositório um aluno.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         /// <param name="dataNascimento">Data de nascimento do aluno.</param>

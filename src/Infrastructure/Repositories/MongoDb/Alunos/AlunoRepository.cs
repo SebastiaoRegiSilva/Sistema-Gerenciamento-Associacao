@@ -79,19 +79,6 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
                 .FirstOrDefaultAsync();
         }
 
-        /// <summary>Recupera na base de dados um aluno cadastrado com base no nome.</summary>
-        /// <param name="nome">Nome do aluno.</param>
-        public async Task<Aluno>RecuperarAlunoNomeAsync(string nome)
-        {
-            var builder = Builders<AlunoModel>.Filter;
-            var filter = builder.Eq(a => a.Nome, nome);
-            
-            return await _ctxAluno.Alunos
-                .Aggregate()
-                .Match(filter)
-                .FirstOrDefaultAsync();
-        }
-
         // <summary>Exclui na base de dados um aluno cadastrado no sistema com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         public async Task ExcluirAlunoAsync(string matricula)
