@@ -1,5 +1,5 @@
 using Disparo.Plataforma.Domain.Armarios;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,7 +8,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade armário.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ArmarioController : ControllerBase
+    public class ArmarioController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos armários.</summary>
         private readonly ArmarioService _armarioService;
@@ -25,6 +25,7 @@ namespace Disparo.Plataforma.Api.Controllers
             _predioService = predioService;
         }
 
+        /// <summary>Buscar armário por número.</summary>
         [HttpGet("{numeroIdentificador}")]
         public async Task<ActionResult<Armario>> BuscarArmarioNumeroAsync(int numeroIdentificador)
         {
@@ -32,24 +33,36 @@ namespace Disparo.Plataforma.Api.Controllers
             if (armarioRecuperado == null)
                 return NotFound($"O armário com o número {numeroIdentificador} não existe na base de dados.");
             
-            return Ok(armarioRecuperado);
+            return Json(armarioRecuperado);
         }
 
         /// <summary>Cadastrar armário.</summary>
         [HttpPost]
-        public async Task<IActionResult> CadastrarArmarioAsync(int numeroIdentificador, int anoValidade, Predio predio)
+        public async Task<IActionResult> CadastrarArmarioAsync(int numeroIdentificador, int anoValidade,int numeroPredio)
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
-            
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
+
+            bool disponivel = true;
+
             if(armarioRecuperado != null)
                 return Ok($"Já existe um armário cadastrada com o número {numeroIdentificador} no sistema!");
-            else
-            {
-                await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade);        
-                return Ok("Armário cadastrado com sucesso!");
-            }
+            
+            await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade, disponivel);        
+            return Ok("Armário cadastrado com sucesso!");
         }
 
+        /// <summary>Lista de todos os armários disponíveis no sistema.<summary>  
+        /// <returns>Um Json com todos os armários disponíveis.</returns>
+        [HttpGet]
+        public async Task<ActionResult<Armario>> ListarTodosArmariosDisponiveis()
+        {
+            // Recupera todos armários disponíveis.
+            var listaArmarios = await _armarioService.ListarTodosArmariosDisponiveisAsync();
+            
+            return Json(listaArmarios); 
+        }
+        
         [HttpPut]
         public async Task<IActionResult> EditarArmarioAsync(int numeroIdentificador)
         {
@@ -71,7 +84,7 @@ namespace Disparo.Plataforma.Api.Controllers
                 return NotFound($"Armário com o nome {numeroIdentificador} não existe na base de dados.");
             else
             {
-                await _armarioService.EditarArmarioAsync(numeroIdentificador);
+                await _armarioService.ExcluirArmarioAsync(numeroIdentificador);
                 return Ok("Armário excluído com sucesso!");
             }
         }

@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Alunos;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Armarios
@@ -9,9 +10,10 @@ namespace Disparo.Plataforma.Domain.Armarios
     {
         /// <summary>Cadastra no repositório um novo armário.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
-        /// <param name="Predio">Prédio onde está localizado.</param>
+        /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
-        Task<string>CadastrarArmarioAsync(int numeroIdentificador, Predio Predio, int anoValidade);
+        /// <param name="disponivel">Disponibilidade do armário.</param>
+        Task<string>CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade, bool disponivel);
         
         /// <summary>Edita no repositório um armário cadastrado.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
@@ -28,5 +30,8 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <summary>Exclui no repositório um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         Task ExcluirArmarioAsync(int  numeroIdentificador);
+        
+        /// <summary>Lista dos armários disponíveis no repositório.</summary>
+        Task<IEnumerable<Armario>> RecuperarTodosArmariosDisponiveis();
     }
 }

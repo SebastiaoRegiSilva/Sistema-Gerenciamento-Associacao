@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Alunos;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Domain.Armarios
@@ -31,12 +32,13 @@ namespace Disparo.Plataforma.Domain.Armarios
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="numeroPredio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        /// <param name="disponivel">Disponibilidade do armário.</param>
         /// <returns>Código de identificação gerado para um armário cadastrado.</returns>
-        public async Task<string>CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade)
+        public async Task<string>CadastrarArmarioAsync(int numeroPredio, int numeroIdentificador, int anoValidade, bool disponivel)
         {
             var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
 
-            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predioRecuperado, anoValidade);
+            var idArmario = await _armarioRep.CadastrarArmarioAsync(numeroIdentificador, predioRecuperado, anoValidade, disponivel);
 
             return idArmario;
         }
@@ -55,10 +57,16 @@ namespace Disparo.Plataforma.Domain.Armarios
             return await _armarioRep.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
         }
 
+        /// <summary>Lista dos armários disponíveis no repositório.</summary>
+        public async Task<IEnumerable<Armario>> ListarTodosArmariosDisponiveisAsync()
+        {
+            return await _armarioRep.RecuperarTodosArmariosDisponiveis();
+        }
+
         /// <summary>Recupera no repositório um armário cadastrado com base no nome do aluno.</summary>
         /// <param name="nomeAluno">Nome do aluno responsável pelo armário.</param>
         //Task<Armario>RecuperarArmarioAlunoAsync(int  nomeAluno){}
-        
+
         /// <summary>Exclui no repositório um armário cadastrado no sistema com base no seu número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         public async Task ExcluirArmarioAsync(int  numeroIdentificador)

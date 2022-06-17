@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Domain.Plataforma.Domain.Predios
+namespace Disparo.Plataforma.Domain.Predios
 {
     /// <summary>Interface que padroniza o repositório dos prédios.</summary>
     public interface IPredioRepository

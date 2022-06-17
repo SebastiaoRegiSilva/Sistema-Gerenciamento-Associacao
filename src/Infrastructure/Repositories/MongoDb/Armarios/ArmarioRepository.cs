@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Disparo.Plataforma.Domain.Alunos;
 using Disparo.Plataforma.Domain.Armarios;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
-using Domain.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Domain.Predios;
 using MongoDB.Driver;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
@@ -25,14 +26,16 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="predio">Prédio onde está localizado.</param>
         /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        /// <param name="disponivel">Disponibilidade do armário.</param>
         /// <returns>O código de identificação do armário cadastradado.</returns>
-        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade)
+        public async Task<string> CadastrarArmarioAsync(int numeroIdentificador, Predio predio, int anoValidade, bool disponivel)
         {            
             var model = new ArmarioModel
             {
                 NumeroIdentificador = numeroIdentificador,
                 Predio = predio,
-                AnoValidade = anoValidade
+                AnoValidade = anoValidade,
+                Disponivel = disponivel
             };
 
             await _ctxArmario.Armarios.InsertOneAsync(model);
@@ -66,6 +69,19 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
             var filter = builder.Eq(a => a.NumeroIdentificador, numeroIdentificador);
             
             return await _ctxArmario.Armarios
+                .Aggregate()
+                .Match(filter)
+                .FirstOrDefaultAsync();
+        }
+        
+        /// <summary>Recupera no base de dados um armario cadastrado com base no número.</summary>
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
+        public async Task<IEnumerable<Armario>>RecuperarTodosArmariosDisponiveis()
+        {
+            var builder = Builders<ArmarioModel>.Filter;
+            var filter = builder.Eq(a => a.Disponivel, true);
+            
+            return (IEnumerable<Armario>)await _ctxArmario.Armarios
                 .Aggregate()
                 .Match(filter)
                 .FirstOrDefaultAsync();

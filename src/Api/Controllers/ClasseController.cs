@@ -7,7 +7,7 @@ namespace Disparo.Plataforma.Api.Controllers
     /// <summary>Controller que provê endpoints relacionados a entidade classe.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ClasseController : ControllerBase
+    public class ClasseController : Controller
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas as classes.</summary>
         private readonly ClasseService _classeService;
@@ -24,7 +24,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"A classe com esse nome {habilitacao} não existe na base de dados.");
+                return Json($"A classe com esse nome {habilitacao} não existe na base de dados.");
             
             return Ok(classeRecuperada);
         }
@@ -49,7 +49,7 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados.");
+                return Json($"Classe com o nome {habilitacao} não existe na base de dados.");
             else
             {
                 await _classeService.EditarClasseAsync(habilitacao);
@@ -62,10 +62,10 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
-                return NotFound($"Classe com o nome {habilitacao} não existe na base de dados.");
+                return Json($"Classe com o nome {habilitacao} não existe na base de dados.");
             else
             {
-                await _classeService.EditarClasseAsync(habilitacao);
+                await _classeService.ExcluirClasseAsync(habilitacao);
                 return Ok("Classe excluída com sucesso!");
             }
         }
