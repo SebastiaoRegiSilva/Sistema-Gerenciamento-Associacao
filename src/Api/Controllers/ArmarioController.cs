@@ -30,10 +30,8 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<ActionResult<Armario>> BuscarArmarioNumeroAsync(int numeroIdentificador)
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
-            if (armarioRecuperado == null)
-                return NotFound($"O armário com o número {numeroIdentificador} não existe na base de dados.");
             
-            return Json(armarioRecuperado);
+            return armarioRecuperado == null? Json($"O armário com o número {numeroIdentificador} não existe na base de dados."): Json(armarioRecuperado);
         }
 
         /// <summary>Cadastrar armário.</summary>
@@ -49,7 +47,7 @@ namespace Disparo.Plataforma.Api.Controllers
                 return Ok($"Já existe um armário cadastrada com o número {numeroIdentificador} no sistema!");
             
             await _armarioService.CadastrarArmarioAsync(predioRecuperado.NumeroIdentificador, numeroIdentificador, anoValidade, disponivel);        
-            return Ok("Armário cadastrado com sucesso!");
+            return Json("Armário cadastrado com sucesso!");
         }
 
         /// <summary>Lista de todos os armários disponíveis no sistema.<summary>  
@@ -68,11 +66,11 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             if (armarioRecuperado == null)
-                return NotFound($"Armário com o número {numeroIdentificador} não existe na base de dados.");
+                return Json($"Armário com o número {numeroIdentificador} não existe na base de dados.");
             else
             {
                 await _armarioService.EditarArmarioAsync(numeroIdentificador);
-                return Ok("Armário editada com sucesso!");
+                return Json("Armário editada com sucesso!");
             }
         }
 
@@ -81,11 +79,11 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             if (armarioRecuperado == null)
-                return NotFound($"Armário com o nome {numeroIdentificador} não existe na base de dados.");
+                return Json($"Armário com o nome {numeroIdentificador} não existe na base de dados.");
             else
             {
                 await _armarioService.ExcluirArmarioAsync(numeroIdentificador);
-                return Ok("Armário excluído com sucesso!");
+                return Json("Armário excluído com sucesso!");
             }
         }
     }
