@@ -36,9 +36,9 @@ namespace Disparo.Plataforma.Api.Controllers
         [HttpGet("{matricula}")]
         public async Task<ActionResult<AlunoModel>> BuscarPorMatricula(int matricula)
         {
-            var aluno = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
+            var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             
-            return aluno == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(aluno); 
+            return alunoRecuperado == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(alunoRecuperado); 
         }
 
         /// <summary> 

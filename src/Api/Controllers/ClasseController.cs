@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Disparo.Plataforma.Domain.Classes;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Api.Controllers
 {
@@ -19,19 +19,22 @@ namespace Disparo.Plataforma.Api.Controllers
             _classeService = classeService;
         }
 
+        /// <summary>
+        /// Busca no repositório uma determinada classe.
+        /// </summary>
+        /// <param name="habilitacao">Nome do curso, da mesma forma que est[a escrito no NSA.</param>
+        /// <returns>Classe com as características descritas nos parâmetros supracitados.</returns>
         [HttpGet("{habilitacao}")]
-        public async Task<ActionResult<Classe>> BuscarClasseHabilitacaoAsync(string habilitacao)
+        public async Task<ActionResult<Classe>> BuscarClasse(string habilitacao)
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
-            if (classeRecuperada == null)
-                return Json($"A classe com esse nome {habilitacao} não existe na base de dados.");
             
-            return Json(classeRecuperada);
+            return classeRecuperada == null? Json($"O classe buscada não existe na base de dados."): Json(classeRecuperada);
         }
-
+        
         /// <summary>Cadastrar classe.</summary>
         [HttpPost]
-        public async Task<IActionResult> CadastrarClasseAsync(string habilitacao, int anoOC, string moduloSerie)
+        public async Task<IActionResult> CadastrarClasse(string habilitacao, int anoOC, string moduloSerie)
         {
             var classerecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             
@@ -45,7 +48,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditarClasseAsync(string habilitacao)
+        public async Task<IActionResult> EditarClasse(string habilitacao)
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
@@ -58,7 +61,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeletarClasseAsync(string habilitacao)
+        public async Task<IActionResult> DeletarClasse(string habilitacao)
         {
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             if (classeRecuperada == null)
