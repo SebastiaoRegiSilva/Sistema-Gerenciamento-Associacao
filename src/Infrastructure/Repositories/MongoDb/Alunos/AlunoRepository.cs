@@ -101,7 +101,7 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
         public async Task ExcluirTodosAlunosAsync()
         {
             var builder = Builders<AlunoModel>.Filter;
-            var filter = builder.Where(a => a.Nome == string.Empty);
+            var filter = builder.Where(a => a.Nome != string.Empty);
 
             await _ctxAluno.Alunos.DeleteManyAsync(filter);
         }
