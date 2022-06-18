@@ -39,8 +39,15 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<IActionResult> CadastrarArmarioAsync(int numeroIdentificador, int anoValidade,int numeroPredio)
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
+            
             var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
-
+            
+            // Se o prédio não existir ele será criado nesse momento.
+            if(predioRecuperado == null)
+            {
+                await _predioService.CadastrarPredioAsync(numeroPredio);
+                predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
+            }
             bool disponivel = true;
 
             if(armarioRecuperado != null)
