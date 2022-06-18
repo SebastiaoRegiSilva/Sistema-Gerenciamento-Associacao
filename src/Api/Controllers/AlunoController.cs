@@ -57,7 +57,7 @@ namespace Disparo.Plataforma.Api.Controllers
             var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacaoClasse);
             
             if(classeRecuperada == null)
-                Json($"A classe com a habilitação {habilitacaoClasse} não existe na base de dados!");
+                NotFound($"A classe com a habilitação {habilitacaoClasse} não existe na base de dados!");
             
             if(! _alunoService.ValidarEmailAsync(enderecoEmail).Result)
                 throw new AddressEmailInvalidException(enderecoEmail);
