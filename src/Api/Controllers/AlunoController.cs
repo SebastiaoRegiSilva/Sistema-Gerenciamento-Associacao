@@ -1,11 +1,10 @@
 using Disparo.Plataforma.Domain.Alunos;
+using Disparo.Plataforma.Domain.Classes;
 using Disparo.Plataforma.Domain.Emails.Exceptions;
 using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos.Models;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Api.Controllers
@@ -19,11 +18,16 @@ namespace Disparo.Plataforma.Api.Controllers
         /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos alunos.</summary>
         private readonly AlunoService _alunoService;
 
+        /// <summary>Serviço que provê acesso aos dados e operações relacionadas as classes.</summary>
+        private readonly ClasseService _classeService;
+
         /// <summary>Construtor com parâmetros para inicialização.</summary>
         /// <param name="alunoService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos alunos.</param>
-        public AlunoController(AlunoService alunoService)
+        /// <param name="classeService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas as classes.</param>
+        public AlunoController(AlunoService alunoService, ClasseService classeService)
         {
             _alunoService = alunoService;
+            _classeService = classeService;
         }
 
         /// <summary> Recuperar no repositório o aluno com base em sua matrícula.</summary>
@@ -45,12 +49,15 @@ namespace Disparo.Plataforma.Api.Controllers
         /// <param name="dataNascimento">Data de nascimento do aluno.(Formato yyyy-mm-dd)</param>
         /// <param name="enderecoEmail">Endereço institucional do aluno.</param>
         /// <param name="numerosTelefones">Formas de contato telefônico direto com o aluno.</param>
-        /// <param name="classe">Classe que o aluno será cadastrada.</param>
+        /// <param name="habilitacaoClasse">Habilitação da classe que o aluno será cadastrado.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarAluno(int matricula, string nome,  string dataNascimento, 
-        string enderecoEmail, string numerosTelefones, ClasseModel classe)
+        string enderecoEmail, string numerosTelefones, string habilitacaoClasse)
         {
-            // Implementar classe.
+            var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacaoClasse);
+            
+            if(classeRecuperada == null)
+                Json($"A classe com a habilitação {habilitacaoClasse} não existe na base de dados!");
             
             if(! _alunoService.ValidarEmailAsync(enderecoEmail).Result)
                 throw new AddressEmailInvalidException(enderecoEmail);
@@ -58,9 +65,9 @@ namespace Disparo.Plataforma.Api.Controllers
             var numeros = new List<string>();
             numeros.Add(numerosTelefones);
 
-            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, ConverterStringDateTime(dataNascimento), enderecoEmail, numeros, classe);         
+            await _alunoService.CadastrarAlunoAsync(ConverterIntString(matricula), nome, ConverterStringDateTime(dataNascimento), enderecoEmail, numeros, classeRecuperada);         
 
-            return Ok("Aluno cadastrado com sucesso.");
+            return Json("Aluno cadastrado com sucesso.");
         }
 
         [HttpPut]
@@ -72,7 +79,7 @@ namespace Disparo.Plataforma.Api.Controllers
                 return NotFound($"A matrícula {matricula} não existe na base de dados.");
             
             await _alunoService.EditarAlunoAsync(ConverterIntString(matricula));
-            return Ok("Aluno editado com sucesso!");
+            return Json("Aluno editado com sucesso!");
         }
 
         [Route("deletar/{matricula}")]
@@ -81,10 +88,10 @@ namespace Disparo.Plataforma.Api.Controllers
         {
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if (alunoRecuperado == null)
-                return Ok($"O aluno com a matrícula{ConverterIntString(matricula)} não existe na base de dados!");
+                return Json($"O aluno com a matrícula{ConverterIntString(matricula)} não existe na base de dados!");
             
             await _alunoService.ExcluirAlunoAsync(ConverterIntString(matricula));
-            return Ok($"O aluno com a matrícula {matricula} foi deletado da base de dados.");
+            return Json($"O aluno com a matrícula {matricula} foi deletado da base de dados.");
         }
 
         [Route("deletar/todos")]
@@ -92,7 +99,7 @@ namespace Disparo.Plataforma.Api.Controllers
         public async Task<IActionResult> DeleteTodosAlunos()
         {
             await _alunoService.ExcluirTodosAlunosAsync();
-            return Ok($"Toda base de alunos foi deletada com sucesso.");
+            return Json($"Toda base de alunos foi deletada com sucesso.");
         }
 
         /// <summary>Converte um integer em string.</summary>
