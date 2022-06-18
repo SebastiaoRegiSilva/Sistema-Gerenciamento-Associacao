@@ -13,7 +13,7 @@ namespace Disparo.Plataforma.Api.Controllers
         private readonly ClasseService _classeService;
 
         /// <summary>Construtor com parâmetros para inicialização.</summary>
-        /// <param name="classseService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas as classes.</param>
+        /// <param name="classeService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas as classes.</param>
         public ClasseController(ClasseService classeService)
         {
             _classeService = classeService;
