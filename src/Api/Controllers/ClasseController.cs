@@ -26,7 +26,7 @@ namespace Disparo.Plataforma.Api.Controllers
             if (classeRecuperada == null)
                 return Json($"A classe com esse nome {habilitacao} não existe na base de dados.");
             
-            return Ok(classeRecuperada);
+            return Json(classeRecuperada);
         }
 
         /// <summary>Cadastrar classe.</summary>
@@ -36,11 +36,11 @@ namespace Disparo.Plataforma.Api.Controllers
             var classerecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacao);
             
             if(classerecuperada != null)
-                return Ok($"Já existe um classe cadastrada com a habilitação {habilitacao} no sistema!");
+                return Json($"Já existe um classe cadastrada com a habilitação {habilitacao} no sistema!");
             else
             {
                 await _classeService.CadastrarClasseAsync(habilitacao, anoOC, moduloSerie);        
-                return Ok("Classe cadastrada com sucesso!");
+                return Json("Classe cadastrada com sucesso!");
             }
         }
 
@@ -53,7 +53,7 @@ namespace Disparo.Plataforma.Api.Controllers
             else
             {
                 await _classeService.EditarClasseAsync(habilitacao);
-                return Ok("Classe editada com sucesso!");
+                return Json("Classe editada com sucesso!");
             }
         }
 
@@ -66,7 +66,7 @@ namespace Disparo.Plataforma.Api.Controllers
             else
             {
                 await _classeService.ExcluirClasseAsync(habilitacao);
-                return Ok("Classe excluída com sucesso!");
+                return Json("Classe excluída com sucesso!");
             }
         }
     }
