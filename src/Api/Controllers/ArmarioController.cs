@@ -1,5 +1,6 @@
 using Disparo.Plataforma.Domain.Armarios;
 using Disparo.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -50,16 +51,19 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Armário cadastrado com sucesso!");
         }
 
-        /// <summary>Lista de todos os armários disponíveis no sistema.<summary>  
-        /// <returns>Um Json com todos os armários disponíveis.</returns>
-        [HttpGet]
-        public async Task<ActionResult<Armario>> ListarTodosArmariosDisponiveis()
-        {
-            // Recupera todos armários disponíveis.
-            var listaArmarios = await _armarioService.ListarTodosArmariosDisponiveisAsync();
+        // /// <summary>
+        // /// Lista de todos os armários disponíveis no sistema.
+        // /// <summary>
+        // /// <returns>Os armários disponíveis.</returns>
+        // /// <response code="200">Returna todos os armários disponíveis.</response>
+        // [HttpGet]
+        // public async Task<ActionResult<ArmarioModel>> ListarTodosArmariosDisponiveis()
+        // {
+        //     // Recupera todos armários disponíveis.
+        //     var listaArmarios = await _armarioService.ListarTodosArmariosDisponiveisAsync();
             
-            return Json(listaArmarios); 
-        }
+        //     return Json(listaArmarios); 
+        // }
         
         [HttpPut]
         public async Task<IActionResult> EditarArmarioAsync(int numeroIdentificador)
