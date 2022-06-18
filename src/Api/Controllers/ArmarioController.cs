@@ -1,6 +1,5 @@
 using Disparo.Plataforma.Domain.Armarios;
 using Disparo.Plataforma.Domain.Predios;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

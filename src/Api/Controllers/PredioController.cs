@@ -23,11 +23,9 @@ namespace Disparo.Plataforma.Api.Controllers
         [HttpGet("{numero}")]
         public async Task<ActionResult<Predio>> BuscarPredioNumero (int numero)
         {
-            var predio = await _predioService.RecuperarPredioPorNumeroAsync(numero);
-            if (predio == null)
-                return NotFound($"O prédio com o número {numero} não está cadastrado na base de dados!");
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numero);
             
-            return Ok();
+            return predioRecuperado == null? Json($"O prédio com o número {numero} não está cadastrado na base de dados!"): Json(predioRecuperado); 
         }
 
         /// <summary>Cadastrar um prédio na base de dados.</summary>
@@ -39,7 +37,7 @@ namespace Disparo.Plataforma.Api.Controllers
                 throw new IdentificationNumberInvalidException(numeroIdentificador);
 
             await _predioService.CadastrarPredioAsync(numeroIdentificador);         
-            return Ok("Prédio cadastrado com sucesso!");
+            return Json("Prédio cadastrado com sucesso!");
         }
 
         [HttpPut]
