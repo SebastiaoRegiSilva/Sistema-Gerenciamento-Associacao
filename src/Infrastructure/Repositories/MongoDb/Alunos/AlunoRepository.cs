@@ -4,6 +4,7 @@ using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos.Models;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
@@ -77,6 +78,14 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
                 .Aggregate()
                 .Match(filter)
                 .FirstOrDefaultAsync();
+        }
+
+        /// <summary>Recuperar no repositório todos os alunos cadastrados.</summary>
+        public async Task<IEnumerable<Aluno>>RecuperarTodosAsync()
+        {        
+            // Forçar o método para se assíncrono.
+            await Task.Yield();
+            throw new NotImplementedException();
         }
 
         // <summary>Exclui na base de dados um aluno cadastrado no sistema com base na matrícula.</summary>

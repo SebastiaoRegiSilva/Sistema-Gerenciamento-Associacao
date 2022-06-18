@@ -37,4 +37,3 @@ namespace Disparo.Plataforma.DomainTests
         }
     }
 }
-0

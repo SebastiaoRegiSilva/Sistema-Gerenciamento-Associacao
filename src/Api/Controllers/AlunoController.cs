@@ -41,6 +41,16 @@ namespace Disparo.Plataforma.Api.Controllers
             return alunoRecuperado == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(alunoRecuperado); 
         }
 
+        /// <summary> Recuperar no repositório todos os alunos.</summary>
+        /// <returns>Todos os alunos cadastrados no repositório.(FALTA IMPLEMENTAR NO REPOSITÓRIO.)</returns>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Aluno>>> BuscarTodosAlunos()
+        {
+            var alunosRecuperados = await _alunoService.RecuperarTodosAlunoAsync();
+            
+            return alunosRecuperados == null? Json($"Não existe alunos na base de dados."): Json(alunosRecuperados); 
+        }
+
         /// <summary> 
         /// Cadastrar no repositório um aluno.
         /// </summary>

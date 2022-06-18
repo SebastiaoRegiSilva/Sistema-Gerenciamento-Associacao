@@ -25,7 +25,10 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <summary>Recupera no repositório um aluno cadastrado com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         Task<Aluno>RecuperarAlunoMatriculaAsync(string matricula);
-
+        
+        /// <summary>Recuperar no repositório todos os alunos cadastrados.</summary>
+        Task<IEnumerable<Aluno>>RecuperarTodosAsync();
+        
         /// <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         Task ExcluirAlunoAsync(string matricula);
