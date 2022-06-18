@@ -16,6 +16,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.IO;
+using System.Reflection;
+using System;
 
 namespace Disparo.Plataforma.Api
 {
@@ -62,6 +65,11 @@ namespace Disparo.Plataforma.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "associacao_pais_mestres", Version = "v1" });
+                
+                // Permitir comentários no swagger. 
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

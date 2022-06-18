@@ -13,5 +13,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Repositories\MongoDb\MongoDbRepository.csproj" />
   </ItemGroup>
+  
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
 
 </Project>
