@@ -20,7 +20,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         /// <summary>
-        /// Busca no repositório uma determinada classe.
+        /// Busca no repositório uma determinada classe com base em sua habilitação.
         /// </summary>
         /// <param name="habilitacao">Nome do curso, da mesma forma que est[a escrito no NSA.</param>
         /// <returns>Classe com as características descritas nos parâmetros supracitados.</returns>
@@ -32,7 +32,12 @@ namespace Disparo.Plataforma.Api.Controllers
             return classeRecuperada == null? Json($"O classe buscada não existe na base de dados."): Json(classeRecuperada);
         }
         
-        /// <summary>Cadastrar classe.</summary>
+        /// <summary>
+        /// Cadastra uma classe no repositório.
+        /// </summary>
+        /// <param name="habilitacao">Nome do curso corforme está exemplificado no NSA.</param>
+        /// <param name="anoOC">Ano em que o aluno foi matrículado.</param>
+        /// <param name="moduloSerie">Semestre corrente, em relação ao ano vigente.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarClasse(string habilitacao, int anoOC, string moduloSerie)
         {
@@ -47,6 +52,10 @@ namespace Disparo.Plataforma.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Edita no repositório uma classe com base em sua habilitação.
+        /// </summary>
+        /// <param name="habilitacao">Nome do curso corforme está exemplificado no NSA.</param>
         [HttpPut]
         public async Task<IActionResult> EditarClasse(string habilitacao)
         {
@@ -60,6 +69,11 @@ namespace Disparo.Plataforma.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta uma classe no repositório com base em sua habilitação.
+        /// </summary>
+        /// <param name="habilitacao">Nome do curso corforme está exemplificado no NSA.</param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeletarClasse(string habilitacao)
         {
