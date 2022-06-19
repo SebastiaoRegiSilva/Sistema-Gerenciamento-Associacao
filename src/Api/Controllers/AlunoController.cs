@@ -80,18 +80,41 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Aluno cadastrado com sucesso.");
         }
 
+        /// <summary> 
+        /// Editar um aluno no repositório FUNÇÃO PRECISA SER CORRIGIDA.
+        /// </summary>
+        /// <param name="matricula">Matrícula do aluno.</param>
+        /// <param name="nome">Nome do aluno.</param>
+        /// <param name="dataNascimento">Data de nascimento do aluno.(Formato yyyy-mm-dd)</param>
+        /// <param name="enderecoEmail">Endereço institucional do aluno.</param>
+        /// <param name="numerosTelefones">Formas de contato telefônico direto com o aluno.</param>
+        /// <param name="habilitacaoClasse">Habilitação da classe que o aluno será editado.</param>
         [HttpPut]
-        public async Task<IActionResult> EditarAluno(int matricula)
+        public async Task<IActionResult> EditarAluno(int matricula, string nome,  string dataNascimento, 
+        string enderecoEmail, string numerosTelefones, string habilitacaoClasse)
         {
             // Validar se o aluno existe antes de tentar editá-lo.
             var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(ConverterIntString(matricula));
             if(alunoRecuperado == null)
                 return NotFound($"A matrícula {matricula} não existe na base de dados.");
+
+            var classeRecuperada = await _classeService.RecuperarClassePorHabilitacaoAsync(habilitacaoClasse);
             
-            await _alunoService.EditarAlunoAsync(ConverterIntString(matricula));
+            if(classeRecuperada == null)
+                NotFound($"A classe com a habilitação {habilitacaoClasse} não existe na base de dados!");
+
+            var numeros = new List<string>();
+            numeros.Add(numerosTelefones);
+            
+            await _alunoService.EditarAlunoAsync(ConverterIntString(matricula), nome, ConverterStringDateTime(dataNascimento), enderecoEmail, numeros, classeRecuperada);
             return Json("Aluno editado com sucesso!");
         }
 
+        /// <summary>
+        /// Exclui no repositório um aluno com base em sua matrícula.
+        /// </summary>
+        /// <param name="matricula">Matrícula do aluno.</param>
+        /// <returns></returns>
         [Route("deletar/{matricula}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteAluno(int matricula)
@@ -103,7 +126,10 @@ namespace Disparo.Plataforma.Api.Controllers
             await _alunoService.ExcluirAlunoAsync(ConverterIntString(matricula));
             return Json($"O aluno com a matrícula {matricula} foi deletado da base de dados.");
         }
-
+        
+        /// <summary> 
+        /// Deletar todos alunos do repositório.
+        /// </summary>
         [Route("deletar/todos")]
         [HttpDelete]
         public async Task<IActionResult> DeleteTodosAlunos()
@@ -111,6 +137,8 @@ namespace Disparo.Plataforma.Api.Controllers
             await _alunoService.ExcluirTodosAlunosAsync();
             return Json($"Toda base de alunos foi deletada com sucesso.");
         }
+
+        // FUNÇÕES PRIVADAS ÚTEIS NO CONTROLLER.
 
         /// <summary>Converte um integer em string.</summary>
         /// <param name="content">Conteúdo a ser convertido.</param>
