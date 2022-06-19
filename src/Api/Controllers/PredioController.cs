@@ -20,15 +20,22 @@ namespace Disparo.Plataforma.Api.Controllers
             _predioService = predioService;
         }
 
+        /// <summary>
+        /// Busca no repositório prédio com base em seu número
+        /// </summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpGet("{numero}")]
-        public async Task<ActionResult<Predio>> BuscarPredioNumero (int numero)
+        public async Task<ActionResult<Predio>> BuscarPredioNumero (int numeroIdentificador)
         {
-            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numero);
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroIdentificador);
             
-            return predioRecuperado == null? Json($"O prédio com o número {numero} não está cadastrado na base de dados!"): Json(predioRecuperado); 
+            return predioRecuperado == null? Json($"O prédio com o número {numeroIdentificador} não está cadastrado na base de dados!"): Json(predioRecuperado); 
         }
 
-        /// <summary>Cadastrar um prédio na base de dados.</summary>
+        /// <summary>
+        /// Cadastra no repositório prédio com base em seu número
+        /// </summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarPredio(int numeroIdentificador)
         {
@@ -40,6 +47,10 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Prédio cadastrado com sucesso!");
         }
 
+        /// <summary>
+        /// Edita no repositório prédio com base em seu número
+        /// </summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpPut]
         public async Task<IActionResult> EditarPredio(int numeroIdentificador)
         { 
@@ -49,6 +60,10 @@ namespace Disparo.Plataforma.Api.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Deleta no repositório prédio com base em seu número
+        /// </summary>
+        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpDelete]
         public async Task<IActionResult> DeletarPredio(int numeroIdentificador)
         {
