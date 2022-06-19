@@ -37,10 +37,15 @@ namespace Disparo.Plataforma.Domain.Alunos
 
         /// <summary>Edita no repositório um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        public async Task EditarAlunoAsync(string matricula)
+        /// <param name="nome">Nome.</param>
+        /// <param name="dataNascimento">Data de nascimento do aluno.</param>
+        /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
+        /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
+        /// <param name="classe">Classe onde o aluno foi matriculado.</param>
+        public async Task EditarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
+        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
         {
-            // Melhorar aqui... Permitir a edição de todos os campos da classe.
-            await _alunoRep.EditarAlunoAsync(matricula);
+            await _alunoRep.EditarAlunoAsync(matricula, nome, dataNascimento, enderecoEmail, numerosTelefones, classe);
         }
 
         /// <summary>Recupera no repositório um aluno cadastrado com base na matrícula.</summary>

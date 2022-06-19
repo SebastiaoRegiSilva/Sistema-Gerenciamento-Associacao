@@ -45,9 +45,13 @@ namespace Disparo.Plataforma.Domain.Armarios
         
         /// <summary>Edita no repositório um armário cadastrado.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
-        public async Task EditarArmarioAsync(int numeroIdentificador)
+        /// <param name="anoValidade">Ano de validade da locação do armário.</param>
+        /// <param name="numeroPredio">Prédio onde está localizado do armário.</param>
+        public async Task EditarArmarioAsync(int numeroIdentificador, int anoValidade,int numeroPredio)
         {
-            await _armarioRep.EditarArmarioAsync(numeroIdentificador);
+            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroPredio);
+
+            await _armarioRep.EditarArmarioAsync(numeroIdentificador, anoValidade, predioRecuperado);
         }
         
         /// <summary>Recupera no repositório um armário cadastrado com base no número.</summary>
@@ -57,6 +61,18 @@ namespace Disparo.Plataforma.Domain.Armarios
             return await _armarioRep.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
         }
 
+        /// <summary>Atribuir aluno a armário no repositório de um armario cadastrado.</summary>
+        /// <param name="matricula">Matrícula do aluno que vai locar o armário.</param> 
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
+        /// <param name="anoValidade">Ano de validade da locação do armário.</param>
+        
+        public async Task AtribuirAlunoArmarioAsync(string matricula, int numeroIdentificador, int anoValidade)
+        {
+            var alunoRecuperado = await _alunoService.RecuperarAlunoMatriculaAsync(matricula);
+
+            await _armarioRep.AtribuirAlunoArmarioAsync(alunoRecuperado, numeroIdentificador, anoValidade);
+        }
+        
         /// <summary>Lista dos armários disponíveis no repositório.</summary>
         public async Task<IEnumerable<Armario>> ListarTodosArmariosDisponiveisAsync()
         {

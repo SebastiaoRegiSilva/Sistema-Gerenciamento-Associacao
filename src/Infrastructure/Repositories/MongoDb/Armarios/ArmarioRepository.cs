@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Disparo.Plataforma.Domain.Alunos;
 using Disparo.Plataforma.Domain.Armarios;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
 using Disparo.Plataforma.Domain.Predios;
+using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios.Models;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
 {
@@ -43,9 +43,11 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
             return model.Id;
         }
 
-        /// <summary>Edita no base de dados um armario cadastrado.</summary>
+        /// <summary>Edita na base de dados um armario cadastrado.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
-        public async Task EditarArmarioAsync(int numeroIdentificador)
+        /// <param name="anoValidade">Ano de validade da locação do armário.</param>
+        /// <param name="predio">Prédio onde está localizado do armário.</param>
+        public async Task EditarArmarioAsync(int numeroIdentificador, int anoValidade, Predio predio)
         {
             var armarioRecuperado = RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             
@@ -54,12 +56,33 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Armarios
 
             var update = Builders<ArmarioModel>.Update
                 .Set(a => a.NumeroIdentificador, armarioRecuperado.Result.NumeroIdentificador)
-                .Set(a => a.Predio, armarioRecuperado.Result.Predio)
+                .Set(a => a.Predio, predio)
                 .Set(a => a.Aluno, armarioRecuperado.Result.Aluno)
-                .Set(a => a.AnoValidade, armarioRecuperado.Result.AnoValidade);
+                .Set(a => a.AnoValidade,anoValidade);
 
             await _ctxArmario.Armarios.UpdateOneAsync(filter, update);
         }
+        
+        /// <summary>Atribuir aluno a armário na base de dados de um armario cadastrado.</summary>
+        /// <param name="Aluno">Aluno que vai locar o armário.</param> 
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
+        /// <param name="anoValidade">Ano de validade da locação do armário.</param>
+        
+        public async Task AtribuirAlunoArmarioAsync(Aluno aluno,int numeroIdentificador, int anoValidade)
+        {
+            var armarioRecuperado = RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
+            
+            var builder = Builders<ArmarioModel>.Filter;
+            var filter = builder.Eq(a => a.NumeroIdentificador, numeroIdentificador);
+
+            var update = Builders<ArmarioModel>.Update
+                .Set(a => a.Aluno, aluno)
+                .Set(a => a.AnoValidade,anoValidade)
+                .Set(a => a.Disponivel, false);
+
+            await _ctxArmario.Armarios.UpdateOneAsync(filter, update);
+        }
+        
         
         /// <summary>Recupera no base de dados um armario cadastrado com base no número.</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
