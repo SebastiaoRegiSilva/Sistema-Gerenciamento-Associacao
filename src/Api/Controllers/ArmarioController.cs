@@ -119,6 +119,8 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Aluno atribuído com sucesso!");
         }
 
+        /// <summary>Exclui um armário no repositório com base em seu código de identificação..</summary>
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
         [HttpDelete]
         public async Task<IActionResult> DeletarArmario(int numeroIdentificador)
         {
