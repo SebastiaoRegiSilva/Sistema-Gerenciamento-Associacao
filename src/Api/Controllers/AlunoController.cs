@@ -30,7 +30,7 @@ namespace Disparo.Plataforma.Api.Controllers
             _classeService = classeService;
         }
 
-        /// <summary> Recuperar no repositório o aluno com base em sua matrícula.</summary>
+        /// <summary> Recupera no repositório o aluno com base em sua matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         /// <returns>Um aluno cadastrado no repositório.</returns>
         [HttpGet("{matricula}")]
@@ -41,7 +41,7 @@ namespace Disparo.Plataforma.Api.Controllers
             return alunoRecuperado == null? Json($"O aluno com a matrícula {matricula} não existe na base de dados."): Json(alunoRecuperado); 
         }
 
-        /// <summary> Recuperar no repositório todos os alunos.</summary>
+        /// <summary> Recupera no repositório todos os alunos.</summary>
         /// <returns>Todos os alunos cadastrados no repositório.(FALTA IMPLEMENTAR NO REPOSITÓRIO.)</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Aluno>>> BuscarTodosAlunos()
@@ -52,7 +52,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         /// <summary> 
-        /// Cadastrar no repositório um aluno.
+        /// Cadastra no repositório um aluno.
         /// </summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         /// <param name="nome">Nome do aluno.</param>
@@ -81,7 +81,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         /// <summary> 
-        /// Editar um aluno no repositório FUNÇÃO PRECISA SER CORRIGIDA.
+        /// Edita um aluno no repositório FUNÇÃO PRECISA SER CORRIGIDA.
         /// </summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         /// <param name="nome">Nome do aluno.</param>
@@ -128,7 +128,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
         
         /// <summary> 
-        /// Deletar todos alunos do repositório.
+        /// Deleta todos alunos do repositório.
         /// </summary>
         [Route("deletar/todos")]
         [HttpDelete]
