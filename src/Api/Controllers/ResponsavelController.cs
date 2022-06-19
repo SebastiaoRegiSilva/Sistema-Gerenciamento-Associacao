@@ -20,6 +20,10 @@ namespace Disparo.Plataforma.Api.Controllers
             _responsavelService = responsavelService;
         }
 
+        /// <summary>
+        /// Busca no repositório responsável com base em CPF.
+        /// </summary>
+        /// <param name="cpf">Cadastro de Pessoa Física.</param>
         [HttpGet("{cpf}")]
         public async Task<ActionResult<Responsavel>> BuscarResponsavelCPF(string cpf)
         {
@@ -30,6 +34,13 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json(responsavelRecuperado);
         }
 
+        /// <summary>
+        /// Cadastra no repositório responsável com base em CPF.
+        /// </summary>
+        /// <param name="cpf">Cadastro de Pessoa Física.</param>
+        /// <param name="nome">Nome do responsável.</param>
+        /// <param name="enderecoEmail">Endereço de e-mail do responsável.</param>
+        /// <param name="numerosTelefones">Forma de contato telefônico direto com o responsável.</param>
         [HttpPost]
         public async Task<IActionResult> CadastrarResponsavel(string cpf, string nome, string enderecoEmail, string numerosTelefones)
         {
@@ -47,6 +58,10 @@ namespace Disparo.Plataforma.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Edita no repositório responsável com base em CPF.
+        /// </summary>
+        /// <param name="cpf">Cadastro de Pessoa Física.</param>
         [HttpPut]
         public async Task<IActionResult> EditarResponsavel(string cpf)
         {
@@ -60,6 +75,10 @@ namespace Disparo.Plataforma.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta no repositório responsável com base em CPF.
+        /// </summary>
+        /// <param name="cpf">Cadastro de Pessoa Física.</param>
         [HttpDelete]
         public async Task<IActionResult> DeleteResponsavel(string cpf)
         {
