@@ -103,7 +103,7 @@ namespace Disparo.Plataforma.Api.Controllers
         }
 
         /// <summary>Atribuir um armário a um aluno no repositório.</summary>
-        /// <param name="matricula">Mátricula do aluno que vai locar do armário.</param>
+        /// <param name="matricula">Matrícula do aluno que vai locar do armário.</param>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="anoValidade">Ano de validade da locação do armário.</param>
         [HttpPut("{numeroIdentificador}/{matricula}")]
