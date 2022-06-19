@@ -49,26 +49,20 @@ namespace Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Alunos
         }
         
         /// <summary>Edita na base de dados um aluno cadastrado.</summary>
-         /// <param name="matricula">Matrícula do aluno.</param>
-        /// <param name="nome">Nome.</param>
-        /// <param name="dataNascimento">Data de nascimento do aluno.</param>
-        /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
-        /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
-        /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        public async Task EditarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
-        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe)
+        /// <param name="matricula">Matrícula do aluno.</param>
+        public async Task EditarAlunoAsync(string matricula)
         {
             var alunoRecuperado = RecuperarAlunoMatriculaAsync(matricula);
             
             var builder = Builders<AlunoModel>.Filter;
-            var filter = builder.Eq(a => a.Matricula, matricula );
+            var filter = builder.Eq(a => a.Matricula, matricula);
 
             var update = Builders<AlunoModel>.Update
                 .Set(a => a.Matricula, alunoRecuperado.Result.Matricula)
-                .Set(a => a.Nome, nome)
-                .Set(a => a.DataNascimento, dataNascimento)
-                .Set(a => a.EnderecoEmail, enderecoEmail)
-                .Set(a => a.NumerosTelefones, numerosTelefones);
+                .Set(a => a.Nome, alunoRecuperado.Result.Nome)
+                .Set(a => a.DataNascimento, alunoRecuperado.Result.DataNascimento)
+                .Set(a => a.EnderecoEmail, alunoRecuperado.Result.EnderecoEmail)
+                .Set(a => a.NumerosTelefones, alunoRecuperado.Result.NumerosTelefones);
 
             await _ctxAluno.Alunos.UpdateOneAsync(filter, update);
         }
