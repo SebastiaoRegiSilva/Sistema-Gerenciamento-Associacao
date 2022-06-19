@@ -31,7 +31,7 @@ namespace Disparo.Plataforma.Api.Controllers
             _alunoService = alunoService;
         }
 
-        /// <summary>Buscar armário por número.</summary>
+        /// <summary>Busca no repositório armário com base em seu número de identificação.</summary>
         /// <param name="numeroIdentificador">Número de identificação do armário.</param>
         [HttpGet("{numeroIdentificador}")]
         public async Task<ActionResult<Armario>> BuscarArmarioNumero(int numeroIdentificador)
@@ -41,12 +41,12 @@ namespace Disparo.Plataforma.Api.Controllers
             return armarioRecuperado == null? Json($"O armário com o número {numeroIdentificador} não existe na base de dados."): Json(armarioRecuperado);
         }
 
-        /// <summary>Cadastrar armário no repositório.</summary>
+        /// <summary>Cadastra armário no repositório.</summary>
         /// <param name="numeroIdentificador">Número de identificação do armário.</param>
         /// <param name="anoValidade">Ano de validade da locação do armário.</param>
         /// <param name="numeroPredio">Prédio onde está localizado do armário.</param>
         [HttpPost]
-        public async Task<IActionResult> CadastrarArmarioAsync(int numeroIdentificador, int anoValidade,int numeroPredio)
+        public async Task<IActionResult> CadastrarArmario(int numeroIdentificador, int anoValidade,int numeroPredio)
         {
             var armarioRecuperado = await _armarioService.RecuperarArmarioNumeroIdentificadorAsync(numeroIdentificador);
             
@@ -68,7 +68,6 @@ namespace Disparo.Plataforma.Api.Controllers
         /// Lista de todos os armários disponíveis no sistema.
         /// </summary>
         /// <returns>Os armários disponíveis.</returns>
-        /// <response code="200">Returna todos os armários disponíveis.</response>
         [HttpGet]
         public async Task<ActionResult<Armario>> ListarTodosArmariosDisponiveis()
         {
@@ -78,7 +77,7 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json(listaArmarios); 
         }
         
-        /// <summary>Editar armário no repositório.FUNÇÃO PRECISA SER CORRIGIDA.</summary>
+        /// <summary>Edita armário no repositório.FUNÇÃO PRECISA SER CORRIGIDA.</summary>
         /// <param name="numeroIdentificador">Número de identificação do armário.</param>
         /// <param name="anoValidade">Ano de validade da locação do armário.</param>
         /// <param name="numeroPredio">Prédio onde está localizado do armário.</param>
@@ -98,8 +97,8 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Armário editada com sucesso!");
         }
 
-        /// <summary>Atribuir um armário a um aluno no repositório.</summary>
-        /// <param name="matricula">Mátricula do aluno que vai locar do armário.</param>
+        /// <summary>Atribui um armário a um aluno no repositório.</summary>
+        /// <param name="matricula">Matrícula do aluno que vai locar o armário.</param>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         /// <param name="anoValidade">Ano de validade da locação do armário.</param>
         [HttpPut("{numeroIdentificador}/{matricula}")]
@@ -115,7 +114,6 @@ namespace Disparo.Plataforma.Api.Controllers
             return Json("Aluno atribuído com sucesso!");
         }
         
-
         /// <summary>Exclui um armário no repositório com base em seu código de identificação..</summary>
         /// <param name="numeroIdentificador">Número identificador do armário.</param>
         [HttpDelete]
