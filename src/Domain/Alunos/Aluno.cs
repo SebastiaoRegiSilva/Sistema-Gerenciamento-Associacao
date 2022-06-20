@@ -1,29 +1,12 @@
-using Disparo.Plataforma.Domain.Classes;
+using Hort.Etec.Apm.Domain.Classes;
 using System;
 using System.Collections.Generic;
 
-namespace Disparo.Plataforma.Domain.Alunos
-{    
+namespace Hort.Etec.Apm.Domain.Alunos
+{
     /// <summary>Entidade que representa os estudantes.</summary>
     public class Aluno
     {
-        /// <summary>Matrícula.</summary>
-        public string Matricula { get; set; }
-
-        /// <summary>Nome.</summary>
-        public string Nome { get; set; }
-
-        /// <summary>Data de nascimento do aluno.</summary>
-        public DateTime DataNascimento { get; set; }
-
-        /// <summary>Números para comunicação direta com o aluno.</summary>
-        public IEnumerable<string> NumerosTelefones { get; set; }
-
-        /// <summary>Endereço de e-mail institucional.</summary>
-        public string EnderecoEmail { get; set; }
-
-        /// <summary>Classe onde o aluno está matriculado.<summary>
-        public Classe Classe { get; set; }
 
         /// <summary>Construtor com instanciação de um estudante para obter informações.</summary>
         /// <param name="matricula">Matrícula.</param>
@@ -41,5 +24,24 @@ namespace Disparo.Plataforma.Domain.Alunos
             NumerosTelefones = numerosTelefones;
             Classe = classe;
         }
+
+        /// <summary>Matrícula.</summary>
+        public string Matricula { get; set; }
+
+        /// <summary>Nome.</summary>
+        public string Nome { get; set; }
+
+        /// <summary>Data de nascimento do aluno.</summary>
+        public DateTime DataNascimento { get; set; }
+
+        /// <summary>Números para comunicação direta com o aluno.</summary>
+        public IEnumerable<string> NumerosTelefones { get; set; }
+
+        /// <summary>Endereço de e-mail institucional.</summary>
+        public string EnderecoEmail { get; set; }
+
+        /// <summary>Classe onde o aluno está matriculado.
+        ///     <summary>
+        public Classe Classe { get; set; }
     }
 }

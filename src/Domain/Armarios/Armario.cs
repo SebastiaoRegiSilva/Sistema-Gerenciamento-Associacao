@@ -1,11 +1,24 @@
-using Disparo.Plataforma.Domain.Alunos;
-using Disparo.Plataforma.Domain.Predios;
+using Hort.Etec.Apm.Domain.Alunos;
+using Hort.Etec.Apm.Domain.Predios;
 
-namespace Disparo.Plataforma.Domain.Armarios
+namespace Hort.Etec.Apm.Domain.Armarios
 {
     /// <summary>Objeto de valor que representa um armário para guarda de objetos pessoais do aluno.</summary>
     public class Armario
     {
+
+        /// <summary>Construtor com instanciação de um armário para obter informações.</summary>
+        /// <param name="numeroIdentificador">Número identificador do armário.</param>
+        /// <param name="predio">Prédio onde está localizado.</param>
+        /// <param name="aluno">Estudante responsável pelo armário.</param>
+        /// <param name="anoValidade">Ano vigente com permisssão de uso do armário.</param>
+        public Armario(int numeroIdentificador, Predio predio, int anoValidade)
+        {
+            NumeroIdentificador = numeroIdentificador;
+            Predio = predio;
+            AnoValidade = anoValidade;
+        }
+
         /// <summary>Número identificador do armário.</summary>
         public int NumeroIdentificador { get; set; }
 
@@ -17,17 +30,5 @@ namespace Disparo.Plataforma.Domain.Armarios
 
         /// <summary>Ano vigente com permisssão de uso do armário.</summary>
         public int AnoValidade { get; set; }
-
-        /// <summary>Disponibilidade do armário.</summary>
-        public bool Disponivel { get; set; }
-
-        /// <summary>Construtor com instanciação de um armário para obter informações.</summary>
-        public Armario(int numeroIdentificador, Predio predio, int anoValidade, bool disponivel)
-        {
-            NumeroIdentificador = numeroIdentificador;
-            Predio = predio;
-            AnoValidade = anoValidade;
-            Disponivel = disponivel;
-        }
     }
 }

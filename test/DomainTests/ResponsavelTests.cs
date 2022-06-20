@@ -1,19 +1,19 @@
-using Disparo.Plataforma.Domain.Responsaveis;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Responsaveis;
+using Hort.Etec.Apm.Domain.Responsaveis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Hort.Etec.Apm.Infra.Responsaveis;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 
-namespace Disparo.Plataforma.DomainTests
+namespace DomainTests
 {
     /// <summary>Classe de testes para o domínio de responsáveis.</summary>
     [TestClass]
     public class ResponsavelTests
     {
         /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos responsáveis na plataforma.</summary>
-        private static ResponsavelService _responsavelService = null;
+        private static ResponsavelService _responsavelService;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -22,7 +22,7 @@ namespace Disparo.Plataforma.DomainTests
             var ptBR = new CultureInfo("pt-BR");
             Thread.CurrentThread.CurrentCulture = ptBR;
             Thread.CurrentThread.CurrentUICulture = ptBR;
-            
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");

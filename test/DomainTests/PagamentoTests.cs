@@ -1,19 +1,19 @@
-using Disparo.Plataforma.Domain.Pagamentos;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Pagamentos;
+using Hort.Etec.Apm.Domain.Pagamentos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Hort.Etec.Apm.Infra.Pagamentos;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 
-namespace Disparo.Plataforma.DomainTests
+namespace DomainTests
 {
     /// <summary>Classe de testes para o domínio de pagamentos.</summary>
     [TestClass]
     public class PagamentoTests
     {
         /// <summary>Serviço que provê acesso aos dados e operações relacionadas aos pagamentos na plataforma.</summary>
-        private static PagamentoService _pagamentoService = null;
+        private static PagamentoService _pagamentoService;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -22,7 +22,7 @@ namespace Disparo.Plataforma.DomainTests
             var ptBR = new CultureInfo("pt-BR");
             Thread.CurrentThread.CurrentCulture = ptBR;
             Thread.CurrentThread.CurrentUICulture = ptBR;
-            
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");

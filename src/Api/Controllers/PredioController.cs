@@ -1,77 +1,67 @@
-using Disparo.Plataforma.Domain.Predios.Exceptions;
-using Disparo.Plataforma.Domain.Predios;
+using Hort.Etec.Apm.Domain.Predios;
+using Hort.Etec.Apm.Domain.Predios.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Disparo.Plataforma.Api.Controllers
+namespace Hort.Etec.Apm.Api.Controllers
 {
     /// <summary>Controller que provê endpoints relacionados a entidade prédio.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class PredioController : Controller
+    public class PredioController : ControllerBase
     {
         /// <summary>Serviço que provê acesso aos dados e operações relaciondas aos prédios.</summary>
         private readonly PredioService _predioService;
 
         /// <summary>Construtor com parâmetros para inicialização.</summary>
-        /// <param name="predioService">Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos prédios.</param>
+        /// <param name="predioService">
+        ///     Injeção de dependência do serviço que provê acesso aos dados e operações relacionadas aos
+        ///     prédios.
+        /// </param>
         public PredioController(PredioService predioService)
         {
             _predioService = predioService;
         }
 
-        /// <summary>
-        /// Busca no repositório prédio com base em seu número
-        /// </summary>
-        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpGet("{numero}")]
-        public async Task<ActionResult<Predio>> BuscarPredioNumero (int numeroIdentificador)
+        public async Task<ActionResult<Predio>> BuscarPredioNumero(int numero)
         {
-            var predioRecuperado = await _predioService.RecuperarPredioPorNumeroAsync(numeroIdentificador);
-            
-            return predioRecuperado == null? Json($"O prédio com o número {numeroIdentificador} não está cadastrado na base de dados!"): Json(predioRecuperado); 
+            var predio = await _predioService.RecuperarPredioPorNumeroAsync(numero);
+            if (predio == null)
+                return NotFound($"O prédio com o número {numero} não está cadastrado na base de dados!");
+
+            return Ok();
         }
 
-        /// <summary>
-        /// Cadastra no repositório prédio com base em seu número
-        /// </summary>
-        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
+        /// <summary>Cadastrar um prédio na base de dados.</summary>
         [HttpPost]
         public async Task<IActionResult> CadastrarPredio(int numeroIdentificador)
         {
             // Valida se prédio já existe.
-            if(_predioService.ValidarPredioExiste(numeroIdentificador).Result)
+            if (_predioService.ValidarPredioExiste(numeroIdentificador).Result)
                 throw new IdentificationNumberInvalidException(numeroIdentificador);
 
-            await _predioService.CadastrarPredioAsync(numeroIdentificador);         
-            return Json("Prédio cadastrado com sucesso!");
+            await _predioService.CadastrarPredioAsync(numeroIdentificador);
+            return Ok("Prédio cadastrado com sucesso!");
         }
 
-        /// <summary>
-        /// Edita no repositório prédio com base em seu número
-        /// </summary>
-        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpPut]
         public async Task<IActionResult> EditarPredio(int numeroIdentificador)
-        { 
+        {
             // Validar se prédio já existi.
-            if(_predioService.ValidarPredioExiste(numeroIdentificador).Result)
+            if (_predioService.ValidarPredioExiste(numeroIdentificador).Result)
                 await _predioService.EditarPredioAsync(numeroIdentificador);
             return NoContent();
         }
 
-        /// <summary>
-        /// Deleta no repositório prédio com base em seu número
-        /// </summary>
-        /// <param name="numeroIdentificador">Número de identificação do prédio.</param>
         [HttpDelete]
         public async Task<IActionResult> DeletarPredio(int numeroIdentificador)
         {
             // Validar se prédio já existi.
-            if(_predioService.ValidarPredioExiste(numeroIdentificador).Result)
+            if (_predioService.ValidarPredioExiste(numeroIdentificador).Result)
                 await _predioService.ExcluirPredioAsync(numeroIdentificador);
 
-            return Json($"O prédio de número {numeroIdentificador} foi excluído da base de dados!");
+            return Ok($"O prédio de número {numeroIdentificador} foi excluído da base de dados!");
         }
     }
 }

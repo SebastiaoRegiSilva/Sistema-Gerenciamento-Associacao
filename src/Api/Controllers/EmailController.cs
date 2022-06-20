@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Disparo.Plataforma.Api.Controllers
+namespace Hort.Etec.Apm.Api.Controllers
 {
     /// <summary>Controller que provê endpoints relacionados entidade email.</summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class EmailController : Controller
+    public class EmailController : ControllerBase
     {
-        
     }
 }

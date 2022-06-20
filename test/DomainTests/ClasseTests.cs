@@ -1,19 +1,19 @@
-using Disparo.Plataforma.Domain.Classes;
-using Disparo.Plataforma.Infrastructure.Repositories.MongoDb.Classes;
+using Hort.Etec.Apm.Domain.Classes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Hort.Etec.Apm.Infra.Classes;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 
-namespace Disparo.Plataforma.DomainTests
+namespace DomainTests
 {
     /// <summary>Classe de testes para o domínio de classes.</summary>
     [TestClass]
     public class ClasseTests
     {
         /// <summary>Serviço que provê acesso aos dados e operações relacionadas as classes na plataforma.</summary>
-        private static ClasseService _classeService = null;
+        private static ClasseService _classeService;
 
         /// <summary>Método de preparação para os testes.</summary>
         [ClassInitialize]
@@ -22,7 +22,7 @@ namespace Disparo.Plataforma.DomainTests
             var ptBR = new CultureInfo("pt-BR");
             Thread.CurrentThread.CurrentCulture = ptBR;
             Thread.CurrentThread.CurrentUICulture = ptBR;
-            
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");

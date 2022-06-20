@@ -1,16 +1,8 @@
-namespace Disparo.Plataforma.Domain.Classes
+namespace Hort.Etec.Apm.Domain.Classes
 {
     /// <summary>Objeto de valor que representa uma classe.</summary>
     public class Classe
     {
-        /// <summary>Nome do curso em que o aluno está matriculado.</summary>
-        public string Habilitacao { get; set; }
-
-        /// <summary>Ano vigente.</summary>
-        public int AnoOC { get; set; }
-
-        /// <summary>Módulo e série vigentes.</summary>
-        public string ModuloSerie { get; set; }
 
         /// <summary>Construtor com parâmetros para instancição de uma classe e suas informações.</summary>
         /// <param name="habilitacao">Nome do curso em que o aluno está matriculado.</param>
@@ -22,5 +14,14 @@ namespace Disparo.Plataforma.Domain.Classes
             AnoOC = anoOC;
             ModuloSerie = moduloSerie;
         }
+
+        /// <summary>Nome do curso em que o aluno está matriculado.</summary>
+        public string Habilitacao { get; set; }
+
+        /// <summary>Ano vigente.</summary>
+        public int AnoOC { get; set; }
+
+        /// <summary>Módulo e série vigentes.</summary>
+        public string ModuloSerie { get; set; }
     }
 }

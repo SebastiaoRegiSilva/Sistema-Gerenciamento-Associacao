@@ -1,9 +1,9 @@
-using Disparo.Plataforma.Domain.Classes;
+using Hort.Etec.Apm.Domain.Classes;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Disparo.Plataforma.Domain.Alunos
+namespace Hort.Etec.Apm.Domain.Alunos
 {
     /// <summary>Interface que padroniza o repositório dos alunos.</summary>
     public interface IAlunoRepository
@@ -15,26 +15,21 @@ namespace Disparo.Plataforma.Domain.Alunos
         /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
         /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
         /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        Task<string>CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
+        Task<string> CadastrarAlunoAsync(string matricula, string nome, DateTime dataNascimento,
         string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
-        
+
         /// <summary>Edita no repositório um aluno cadastrado.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        /// <param name="nome">Nome.</param>
-        /// <param name="dataNascimento">Data de nascimento do aluno.</param>
-        /// <param name="enderecoEmail">Endereço de e-mail institucional.</param>
-        /// <param name="numerosTelefones">Números para comunicação direta com o aluno.</param>
-        /// <param name="classe">Classe onde o aluno foi matriculado.</param>
-        Task EditarAlunoAsync(string matricula, string nome, DateTime dataNascimento, 
-        string enderecoEmail, IEnumerable<string> numerosTelefones, Classe classe);
-        
+        Task EditarAlunoAsync(string matricula);
+
         /// <summary>Recupera no repositório um aluno cadastrado com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
-        Task<Aluno>RecuperarAlunoMatriculaAsync(string matricula);
-        
-        /// <summary>Recuperar no repositório todos os alunos cadastrados.</summary>
-        Task<IEnumerable<Aluno>>RecuperarTodosAsync();
-        
+        Task<Aluno> RecuperarAlunoMatriculaAsync(string matricula);
+
+        /// <summary>Recupera no repositório um aluno cadastrado com base no nome.</summary>
+        /// <param name="nome">Nome do aluno.</param>
+        Task<Aluno> RecuperarAlunoNomeAsync(string nome);
+
         /// <summary>Exclui no repositório um aluno cadastrado no sistema com base na matrícula.</summary>
         /// <param name="matricula">Matrícula do aluno.</param>
         Task ExcluirAlunoAsync(string matricula);
